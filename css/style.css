@@ -1,0 +1,15 @@
+.ocultar{
+	display:none;
+}
+
+.mostrar{
+	display:visible;
+}
+
+body{
+	background-color:red;
+}
+input, textarea, select{
+ display:block;
+}
+

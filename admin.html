@@ -1,0 +1,65 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+   "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <html>
+    <head>
+        <title>RutAmbroz</title>
+        <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+        <link rel="stylesheet" type="text/css" href="css/style.css"/>
+	    <link rel="stylesheet" href="rutas/js/jquery-ui.css">
+		<script  src="rutas/js/jquery.min.js"></script>
+        <script src="rutas/js/jquery-1.9.1.js"></script>
+        <script src="rutas/js/jquery-ui.js"></script>
+        <script  src="rutas/js/administracion.js"></script>
+    </head>
+    <body>
+	    
+	<!-- Hacerlo PopUp Añadir ruta --><section>
+		<button id="nuevo">Añadir nuevo</button>
+		<section id="nuevo_articulo" class="ocultar">
+			<label>ID: <input type="text" name="id"/></label>	<!-- Ocultar al añadir-->	
+			<label>Nombre: <input type="text" name="nombre"/></label>
+			<label>Kilometros: <input type="text" name="kilometros"/></label>
+			<label>Minutos: <input type="number" name="minutos"/></label>
+			<label>Localidad: <select name="localidad" id="localidad">
+				<option value="Abadía">Abadía</option>
+				<option value="Baños de Montemayor">Baños de Montemayor</option>
+				<option value="Aldeanueva del Camino">Aldeanueva del Camino</option>
+				<option value="Casas del Monte">Casas del Monte</option>
+				<option value="Segura del Toro">Segura del Toro</option>
+				<option value="Hervás">Hervás</option>
+				<option value="Gargantilla">Gargantilla</option>
+				<option value="La Garganta">La Garganta</option>
+			</select></label>
+			<label>Consejos: <textarea name="consejos" cols=15 rows=15></textarea></label>
+			<label>Dificultad: <select name="dificultad" id="dificultad">
+				<option value="Baja">Baja</option>
+				<option value="Media">Media</option>
+				<option value="Alta">Alta</option>
+			</select></label>
+			<label>Numero de reservas : <input type="number" name="maximo"/></label>
+			<label>Mapa: <input type="text" name="mapa"/></label>
+			<label>Dirección PDF: <input type="text" name="pdf"/></label><!-- Ocultar al añadir-->				
+			<label>Dir. img: <input type="text" name="dir_img"/></label><!-- Ocultar al añadir-->	
+			<label>Valoracion: <input type="text" name="valoracion"/><label><!-- Ocultar al añadir -->
+			<form enctype="multipart/form-data" class="formulario">
+			<label>Subir imagen</label>
+				<input name="archivo" type="file" id="imagen" />
+				<input type="button" value="Registrar" id="registrar"/>
+				<input type="button" value="Modificar" id="actualizar"/>
+			</form>			
+			<p id="mensaje"></p><br>
+			<button id="oculto">Ocultar</button>
+		</section>		
+	</section >
+	<!-- fin de popup -->
+		
+	<!-- popup modificar articulo -->
+
+	<!-- fin popup -->
+		<section id="mostrar_rutas">
+			
+			<p id="mensaje2"></p><br>
+		</section>
+	</body>
+</html>

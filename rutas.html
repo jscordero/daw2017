@@ -1,0 +1,186 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
+<html>
+
+<head>
+			<link rel="stylesheet" href="css/estilos-v2.css">
+			<link rel="stylesheet" href="css/rutas.css">
+			<meta name="author" content="" />
+			<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+			<meta name="copyright" content="aw1516.org" />
+			<meta name="description" content="Paginas web de principiantes" />
+			<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
+			<script  src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+			<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+			<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+			<script  src="Usuarios/js/usuariosCliente.js"></script>
+			<script  src="rutas/js/indexruta.js"></script>
+			<title>RUTAS</title>
+</head>
+	
+<body>
+<nav id="menu-top">
+				 <div id="desc" class="ocultar" style='width:300px;float:right;color:white;'><form><p>Conectado como <a href='perfilUsuario.html' id='nickLogueado'></a> <input type='button' name='desconectar' id='desconectar' class='botonEspecial' value='Desconectar'/></p></form>
+				</div>
+				<li id="liLogueo" class="ocultar"><a href="#">Loguearse</a>
+					<ul id="ulLogueo" class="mostrar">
+						<li>
+							<form>
+								<div>Nick:</div>
+								<div><input type='text' name='usuario' placeholder='Usuario' id='usuario'/></div>
+								<div>Contraseña:</div>
+								<div><input type='password' name='passwd' id="passwd" placeholder='Password'/></div>
+								<div><input type='button' name='loguearse' id='loguearse' class="botonEspecial" value='Enviar' /></div>
+							</form>
+
+
+						</li>
+					</ul>
+				</li>
+			   
+				<li><a href="#" id="liRegistro" class="ocultar">Registrarse</a>
+					<ul class="mostrar" id="ulRegistro">
+						<li>
+							<form id="insert" >
+								<div id="registrarse">Registrarse aquí:</div>
+								<div>Nick de usuario: <input type="text" name="usuario" id="usuario" placeholder="ej:CyberBob"/></div>
+								<div>Contraseña: <input type="password" name="passwd" id="passwd"/></div>
+								<div>Correo electrónico: <input type="text" name="correo" id="correo" placeholder="ej:usuario@correo.com"/></div>
+								<div>DNI:<input type="text" name="dni" id="dni" placeholder="ej:David"/></div>
+								<div>Nombre:<input type="text" name="nombre" id="nombre" placeholder="ej:David"/></div> 
+								<div>Apellidos: <input type="text" name="apellidos" id="apellidos" placeholder="ej:García Hernández"/></div>
+								<div>Fecha de nacimiento: <input type="text" name="fecna" id="fecna" placeholder="ej:23/05/1997"/></div>
+								<div>Teléfono: <input type="text" name="telefono" id="telefono" placeholder="678365229"/></div>
+								<!--El siguiente input #perfil hay que dejarlo oculto para que el usuario no lo vea -->
+								<div><input type="text" name="perfil" id="perfil" value="3"/></div>
+								<div><input type="button" name="insertar" id="insertar" class="botonEspecial" value="Enviar"/></div>
+							</form>
+						</li>
+					</ul>         
+				</li>
+			</nav>  
+	
+<div id="centrar">  
+<header>
+<a href="index.html"><img src="img/header.jpg" width="100%"></a>
+</header>
+	<nav id="menu-principal">
+		 <ul>  
+			<li><a href="index.html">INICIO</a></li>
+			<li><a href="rutas.html">RUTAS</a></li>
+			<li><a href="hospedajes.html">HOSPEDAJE</a></li>
+			<li><a href="guias.html">GUIAS</a></li>
+			<li class = "oculto" id="botonPerfil"><a href="perfilusuario.html">PERFIL</a></li>
+			<li class="ocultar" id="botonAdmin" ><a href="admin.html">GESTIÓN</a></li>
+		 </ul> 
+	</nav>
+
+	
+	<div id="div1">
+		<a href="img/publi-home.png" ><img src="img/publi-home.png"></a>
+	</div>	
+	<div class="cuerpo1">
+	<div class="cuerpo2">
+	<aside id="menu-busqueda">
+			<p>Rutas seleccionables:</p>
+			<div id="lista"><select id="listado"></select></div>
+			<p>Localidades:</p>
+			<div>
+				<select id="localidad_busqueda">			
+					<option selected>Todas</option>
+					<option>Abadía</option>
+					<option>Aldeanueva del Camino</option>
+					<option>Baños de Montemayor</option>
+					<option>Casas del Monte</option>
+					<option>Gargantilla</option>
+					<option>Hervás</option>
+					<option>La Garganta</option>
+					<option>Segura del Toro</option>
+				</select>
+			</div>
+			<p>Fechas disponibles:</p>
+			<div>
+				<input type="text" name="calendario" id="datepicker"/>
+			</div>
+			<span class="button reserva" id="reset">Reset</span>
+			<div id="Clas_rutas"></div>
+		</aside>
+	
+	<section>
+		<article>
+		 <div id="ruta">
+			 <div id="titulo_ruta"><input type="hidden" id="id_ruta"/><p id="nombre_ruta"></p><p id="valoracion"></p></div>
+				<p><li id="especial">Localidad: <span id="localidad"></span></li>
+				</p>
+				<p><li>Tiempo: <span id="Tiempo"></span></li>
+				<li>Dificultad: <span id="Dificultad"></span></li>
+				<li>Distancia: <span id="Distancia"></span> km</li></p>
+				<p><li><a id="PDF"  href="" download=""><img id="icon" src="img/pdf.png"></img></a></li>
+				<li>Fechas: <div id="fechas_ruta"></div></li><li id="comprobarB"><a id="botonreserva" class="reserva oculto" class="button" data-type="zoomin" href="#">RESERVAR</a></li></p>
+			 </div>
+		<div id="ruta_tamanio">
+		<div id="tabs">
+		<ul>
+			<li><a href="#tabs-1">Descripción</a></li>
+			<li><a href="#tabs-2">Mapa</a></li>
+		</ul>
+		<div id="tabs-1"><div id="descripcion"></div></div>
+		<div id="tabs-2"><div id="mapa"></div></div>		
+		</div>
+		</div>	
+		<div id="seleccion"><p>COMENTARIOS: </p><a id="nuevocomentario" class="reserva oculto" class="button" data-type="zoomin" href="#">Añadir</a>
+			<span id="mostrar_totales_comentarios">Mostrar: <select id="mostrar_comentarios">			
+					<option selected>5</option>
+					<option>10</option>
+					<option>25</option>
+					<option>50</option>
+					<option>100</option>					
+				</select>
+			</span>
+		</div>
+		<div id="clear"></div>
+		<div id="comentarios_usuarios"></div>
+		</article>			
+	</section>
+	   
+	</div>
+	</div>
+	 <footer>
+	<p>RUTAS Ambroz S.A ©Copyright 2017 | Todos los derechos reservados.</p>
+	</footer>
+	</div>
+	<div class="overlay-container">
+		<div class="window-container zoomin">
+			<span id="close" class="button reserva">Cerrar</span>
+			<div id="reservar">
+			<li>Ruta: <span id="rutareserva"></span></li>
+			<li>Nombre completo: <span id="nombrecompleto"></span></li>
+			<li><label>DNI: <span id="DNIreserva"></span>	</li>
+			</div>
+			
+			<div class="acompanante">	
+			<p>Nuevo/a comapañero/a</p>					
+			<li>Nombre completo: <input type="text" id ="nombre_rutero" name="nombre_completo"/></span></li>
+			<li><label>DNI: <input type="text" id ="dni_rutero" name="dni_acompanante"/></span>	</li>
+			</div>
+			<div id="listado_ruteros" class="oculto"></div>
+			<a href="#" id="rutero" class="button reserva">Añadir</a>
+			<span id="guardar_Reserva" class="button reserva">Guardar</span>
+		</div>			
+	</div>	
+	<div class="overlay-container2">
+		<div class="window-container2 zoomin">
+		<div id="comentarios">
+			<table>
+			<tr><td colspan=3>Tu Comentario</td><td colspan=3><span id="close2" class="button reserva bforo">Cerrar</span></td></tr>
+			<tr><td colspan=6  id="comentario_user"><textarea id="caja_comentario" maxlength=2000></textarea></td></tr>
+
+			<tr><td colspan=2>Máximo: <span id="contador">2000</span></td><td colspan=4><span  id="enviarComentario" class="button reserva bforo">Enviar</span></td></tr>
+			</table>
+			</div>
+		</div>	
+	</div>	
+</body>
+
+</html>
