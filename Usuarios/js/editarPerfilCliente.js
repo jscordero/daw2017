@@ -1,4 +1,9 @@
 $(document).ready(function() {
+    
+    $("#cancelarReserva").on("click",function() {
+        valor = $(this).value;
+        console.log("Dentro de calcelacion con id: " + valor);
+    });
 
     $("#desplegableUpdate").on('click',function() {
         if($('#divUpdate').hasClass('ocultar2')) {
@@ -90,12 +95,14 @@ $(document).ready(function() {
 				console.log("dentro del ajax")
                 console.log(response);
                  var reservas = $('#reservas');
+                
                 var tabla = "<table id='tablaReservas'><caption><h2>Tus reservas:</h2></caption><tr><th>Fecha</th><th>Ruta</th><th>Personas</th></tr>"
                 for(var i = 0; i < response.length; i++) {
                     tabla += "<tr>";
                     tabla += "<td style='width:150px;'>" + response[i].fecha; + "</td>";
                     tabla += "<td>" + response[i].nombreRuta; + "</td>";
                     tabla += "<td style='width:450px;'>" + response[i].personas; + "</td>";
+                    tabla += "<td><input type='button' id='cancelarReserva' name='cancelarReserva' value='" + response[i].idReservas + "'/></td>"
                     tabla += "</tr>";
                 }
                 tabla += "</table>";
