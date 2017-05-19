@@ -253,7 +253,7 @@ $(document).ready(function() {
 					console.log(validoFecha)
 					console.log(validoNombre)	
 					console.log(validoApellidos)
-					alerta("no h <")
+					alerta(validoApellidos)
 					
 					/*$.ajax({
 						data:  enviarAjax,
@@ -271,7 +271,7 @@ $(document).ready(function() {
 						
 					});*/
 				}else{
-					alert('El Usuario ya Existe')
+					alerta('El Usuario ya Existe')
 				}
             }
 		})
@@ -484,7 +484,8 @@ function validarCadena(cadena){
 	}
 }
 
-function alerta(mensaje){	
+function alerta(mensaje){
+$('#alerta').html(mensaje)	
 	type = $(this).attr('data-type');	
 	$('.overlay-container3').fadeIn(function() {		
 		window.setTimeout(function(){
