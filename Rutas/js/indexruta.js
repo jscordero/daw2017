@@ -259,49 +259,69 @@ $(document).ready(function(){
 })
 // funcion guardar una reserva
 function guardarReserva(){
-	var id=$('#id_ruta').val()
-	var fecha=$('#listado_rutas').val()
-	var fechax=fecha.split("/")				
-	var anio=fechax[2]
-	var mes=fechax[1]
-	var dia=fechax[0]			
-	var fecha2=anio+'/'+mes+'/'+dia
-	var nombre=$('#nombrecompleto').html()
-	var dni=$('#DNIreserva').html()
-	var mensaje="<p>"+nombre+" <b>"+dni+"</b></p>"
-	var contador=1;
-	var acompanantes=$('.compi')
-	var dniacompa=$('.dnicompi')		
-	for (var x=0;x<acompanantes.length;x++){
-		mensaje+="<p>"+acompanantes[x].innerHTML+" <b>"+dniacompa[x].innerHTML+"</b></p>"
-		contador++;
-	}			
-	datos={
-		numero:contador,
+	var fecha=$('#listado_rutas').val()	
+	var id=$('#id_ruta').val()					
+	var fecha2=cambiarFecha(fecha)
+	datos={		
 		fecha:fecha2,
-		id_ruta:id,
-		reserva:mensaje
+		id_ruta:id
 	}
 	$.ajax({
-		url: 'rutas/php/guardarReserva.php',
+		url: 'rutas/php/comprobarReserva.php',
 		data:datos,
 		type: 'POST',
 		DataType:'Json',		
 		success: function(data){
 			console.log(data)
-			$('#guardar_Reserva').removeClass('mostrar')
-			$('#guardar_Reserva').addClass('ocultar')
-			$('#rutero').removeClass('mostrar')
-			$('#rutero').addClass('ocultar')
-			$('.acompanante').removeClass('mostrar')
-			$('.acompanante').addClass('ocultar')				
-			$('#listado_ruteros').addClass('mostrar')				
-			var acompa=$('#listado_ruteros').html()
-			acompa+="<p>"+data+"</p>"				
-			$('#listado_ruteros').html(acompa)
-			cerrarPopUp()	
+			if (data==1){
+				alert('Ya tienes una reserva realizada')
+			}else{
+				var id=$('#id_ruta').val()
+				var fecha=$('#listado_rutas').val()	
+				var fecha2=cambiarFecha(fecha)
+				var nombre=$('#nombrecompleto').html()
+				var dni=$('#DNIreserva').html()
+				var mensaje="<p>"+nombre+" <b>"+dni+"</b></p>"
+				var contador=1;
+				var acompanantes=$('.compi')
+				var dniacompa=$('.dnicompi')		
+				for (var x=0;x<acompanantes.length;x++){
+					mensaje+="<p>"+acompanantes[x].innerHTML+" <b>"+dniacompa[x].innerHTML+"</b></p>"
+					contador++;
+				}					
+				datos={
+					numero:contador,
+					fecha:fecha2,
+					id_ruta:id,
+					reserva:mensaje
+				}		
+				console.log("datos:"+datos)
+				$.ajax({
+					url: 'rutas/php/guardarReserva.php',
+					data:datos,
+					type: 'POST',
+					DataType:'Json',		
+					success: function(data){
+						
+						$('#guardar_Reserva').removeClass('mostrar')
+						$('#guardar_Reserva').addClass('ocultar')
+						$('#rutero').removeClass('mostrar')
+						$('#rutero').addClass('ocultar')
+						$('.acompanante').removeClass('mostrar')
+						$('.acompanante').addClass('ocultar')				
+						$('#listado_ruteros').addClass('mostrar')				
+						var acompa=$('#listado_ruteros').html()
+						acompa+="<p>"+data+"</p>"				
+						$('#listado_ruteros').html(acompa)
+						cerrarPopUp()	
+					}
+				})
+	
+			}
+					
 		}
 	})
+	
 }
 	
 	
@@ -444,3 +464,16 @@ function cuenta(){
    var quedan = 2000 - numeros.length
    $('#contador').html(quedan)   
 } 
+
+
+
+function cambiarFecha(fecha){
+	var fecha=$('#listado_rutas').val()
+	var fechax=fecha.split("/")				
+	var anio=fechax[2]
+	var mes=fechax[1]
+	var dia=fechax[0]			
+	var fecha2=anio+'/'+mes+'/'+dia
+	console.log("fecha"+fecha2)
+	return fecha2
+}

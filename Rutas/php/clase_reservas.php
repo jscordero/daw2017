@@ -62,6 +62,18 @@
 			$this->conexion->close();
 			return "conexion cerrada";
 		}
+		
+		function busquedaReserva($id, $fecha, $ruta){
+			$consulta="select id_ruta, fecha, id_usuario from reservas where id_ruta=".$ruta." and id_usuario=".$id." and fecha='".$fecha."'";
+			if($resultado = $this-> conexion -> query($consulta)){
+				if($resultado->num_rows>0){
+					return 1;
+				}else{
+					return 0;
+				}
+				
+			}
+		}
 	}
 	
 ?>
