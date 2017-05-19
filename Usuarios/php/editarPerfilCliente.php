@@ -2,34 +2,30 @@
 session_start();
 include "clase_usuarios.php";
 
-$nombre = "";
-$apellidos = "";
-$fecna = "";
-$telefono = "";
-$password = "";
 
-if($_REQUEST['nombre']) {
-$nombre = $_REQUEST['nombre'];
-}
-if($_REQUEST['apellidos']) {
-$apellidos = $_REQUEST['apellidos'];
-}
-if($_REQUEST['fecna']) {
-$fecna = $_REQUEST['fecna'];
-}
-if($_REQUEST['telefono']) {
-$telefono = $_REQUEST['telefono'];
-}
-if($_REQUEST['password']) {
 $password = $_REQUEST['password'];
-}
+
+$nombre = $_REQUEST['nombre'];
+
+
+$apellidos = $_REQUEST['apellidos'];
+
+
+$fecna = $_REQUEST['fecna'];
+
+
+$telefono = $_REQUEST['telefono'];
+
+
+
+
 
 
 $enlace = new Usuarios(); 
-$visualizar = $enlace->modificarUsuario("","","","",$nombre,$apellidos,$fecna,$telefono,$password);
+$visualizar = $enlace->modificarUsuario($_SESSION['ID'],$_SESSION['nick'],$_SESSION['Correo'],$_SESSION['dni'],$nombre,$apellidos,$fecna,$telefono,$password);
 
 
 
-echo json_encode(array($correo,$dni,$nombre,$apellidos,$fecna,$telefono,$password,$nuevaPassWord,$visualizar));
+echo json_encode($visualizar);
 
 ?>

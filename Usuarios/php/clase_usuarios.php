@@ -60,10 +60,10 @@ class Usuarios{
 
         
 	//Hace un update a la base de datos para modificar parámetros de usuario
-	function modificarUsuario($id,$usuario,$correo,$dni,$nombre,$apellidos,$fecna,$telefono,$perfil) {
+	function modificarUsuario($id,$usuario,$correo,$dni,$nombre,$apellidos,$fecna,$telefono,$password) {
 		$mensaje= "";
 		
-		$consulta = "update usuarios set USUARIO='$usuario',CORREO='$correo',DNI='$dni',NOMBRE='$nombre',APELLIDOS='$apellidos',FECNA='$fecna',TELEFONO=$telefono,PERFIL='$perfil'";
+		$consulta = "update usuarios set USUARIO='$usuario',CORREO='$correo',DNI='$dni',NOMBRE='$nombre',APELLIDOS='$apellidos',FECNA='$fecna',TELEFONO=$telefono,PASSWORD = '$password' WHERE ID='$id'";
         
         
 		
