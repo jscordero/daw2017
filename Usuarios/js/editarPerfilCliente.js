@@ -5,40 +5,7 @@ $(document).ready(function() {
         console.log("Dentro de calcelacion con id: " + valor);
     });
 
-    $("#desplegableUpdate").on('click',function() {
-        if($('#divUpdate').hasClass('ocultar2')) {
-            $('#divUpdate').removeClass('ocultar2');
-            $('#divUpdate').addClass('mostrar2');
-        }else if($('#divUpdate').hasClass('mostrar2')) {
-            $('#divUpdate').removeClass('mostrar2');
-            $('#divUpdate').addClass('ocultar2');
-        }
-
-        $.ajax({
-
-            url:   'Usuarios/php/selectPerfilPrevioUpdate.php',
-            type:  'post',
-            dataType: 'Json',
-            beforeSend: function () {
-                $("#resultado").html("Procesando, espere por favor...");
-            },
-            success:  function (response) {
-
-                var passwd = response.password;
-                var nombre = response.nombre;
-                var apellidos = response.apellidos;
-                var fecna = response.fecna;
-                var telefono = response.telefono;
-
-                $("#passwdUpdate").val(passwd);
-                $("#nombreUpdate").val(nombre);
-                $("#apellidosUpdate").val(apellidos);
-                $("#fecnaUpdate").val(fecna);
-                $("#telefonoUpdate").val(telefono);
-            }
-
-        });
-    })
+    $("#editar_perfil").on('click',desplegar)
 
     $('#update').on('click',function() {
 
@@ -54,12 +21,6 @@ $(document).ready(function() {
 
         var telefono = $(this).parent().parent().children().children("#telefonoUpdate").val();
 
-
-
-
-
-
-
         var enviarAjax = {"nombre":nombre,"apellidos":apellidos,"fecna":fecna,"telefono":telefono,"password":password};
 
         console.log("Esto se va a enviar: " + enviarAjax);
@@ -72,8 +33,8 @@ $(document).ready(function() {
             beforeSend: function () {
                 $("#resultado").html("Procesando, espere por favor...");
             },
-            success:  function (response) {
-                console.log(response);
+            success:  function (response) {                
+				desplegar()
             }
 
 
@@ -91,12 +52,10 @@ $(document).ready(function() {
             beforeSend: function () {
                 $("#resultado").html("Procesando, espere por favor...");
             },
-            success:  function (response) {
-				console.log("dentro del ajax")
-                console.log(response);
+            success:  function (response) {				
                  var reservas = $('#reservas');
                 
-                var tabla = "<table id='tablaReservas'><caption><h2>Tus reservas:</h2></caption><tr><th>Fecha</th><th>Ruta</th><th>Personas</th></tr>"
+                /*var tabla = "<table id='tablaReservas'><tr><th>Fecha</th><th>Ruta</th><th>Personas</th></tr>"
                 for(var i = 0; i < response.length; i++) {
                     tabla += "<tr>";
                     tabla += "<td style='width:150px;'>" + response[i].fecha; + "</td>";
@@ -106,12 +65,57 @@ $(document).ready(function() {
                     tabla += "</tr>";
                 }
                 tabla += "</table>";
-                reservas.html(tabla);
+                
                 tablaEstilos = $("#tablaReservas");
-                tablaEstilos.children.children.style = "border:2px solid red;";
-            }
+                tablaEstilos.children.children.style = "border:2px solid red;";*/
+				var tabla=""
+				for(var i = 0; i < response.length; i++) {
+				//tabla+="<div><input type='button' id='cancelarReserva' class='ocultar2' readOnly='true'name='cancelarReserva' value='" + response[i].idReservas + "'/><div><p><input type='submit' value='X'/><p><span class='fecha'>"+response[i].fecha+"</span><span class='ruta'>"+response[i].nombreRuta+"</span></p></div></div>"+response[i].personas+"</div></div>"
+				tabla+="<div class='contenedor_reserva'><input type='button' id='cancelarReserva' class='ocultar2' readOnly='true'name='cancelarReserva' value='" + response[i].idReservas + "'/><div class='titulo'><p><span class='fecha'>"+response[i].fecha+"</span><span class='ruta'>"+response[i].nombreRuta+"</p></div>"
+				tabla+="<div><p class'persona'>"+response[i].personas+"</p></div></div>"				 
+				 }
+				 reservas.html(tabla);
+			}
 
 
         });
     
 });
+
+function desplegar(){
+	 if($('#updateUsuario').hasClass('ocultar2')) {
+            $('#updateUsuario').removeClass('ocultar2');
+            $('#updateUsuario').addClass('mostrar2');
+			$('#editar_perfil').addClass('ocultar2');
+            $('#editar_perfil').removeClass('mostrar2');
+        }else if($('#updateUsuario').hasClass('mostrar2')) {
+            $('#updateUsuario').removeClass('mostrar2');
+            $('#updateUsuario').addClass('ocultar2');
+			$('#editar_perfil').removeClass('ocultar2');
+            $('#editar_perfil').addClass('mostrar2');
+        }
+
+        $.ajax({
+            url:   'Usuarios/php/selectPerfilPrevioUpdate.php',
+            type:  'post',
+            dataType: 'Json',
+            beforeSend: function () {
+                $("#resultado").html("Procesando, espere por favor...");
+            },
+            success:  function (response) {
+
+                
+                var nombre = response.nombre;
+                var apellidos = response.apellidos;
+                var fecna = response.fecna;
+                var telefono = response.telefono;
+
+                $("#passwdUpdate").val("");
+                $("#nombreUpdate").val(nombre);
+                $("#apellidosUpdate").val(apellidos);
+                $("#fecnaUpdate").val(fecna);
+                $("#telefonoUpdate").val(telefono);
+            }
+
+        });
+}

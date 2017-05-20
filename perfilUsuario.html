@@ -82,32 +82,41 @@
 	</div>
     <div class="cuerpo1">
     <div class="cuerpo2">
-    <aside>
-	<h3>Tu Perfil</h3>
-        <article>
-                        <form  id="updateUsuario">
+		<aside>
+			<h3>Estadísticas</h3>	
+			<article>
+			<div><p>KM's que llevas <span class="marco">0.0</span></p><div>
+			</article>
+			<article>
+			<div><p>Nº Rutas realizadas <span class="marco">0</span></p><div>
+			</article>
+			<h3>Tu Perfil</h3>			
+				<article>
+				<span id="editar_perfil" class="button reserva">Editar</span>
+					<form  id="updateUsuario" class="ocultar2">
 
-                            <fieldset>
-                                <legend id="desplegableUpdate">Modificar datos de perfil:</legend>
-                                <div id="divUpdate" class="ocultar2">
-                                    <div>Contraseña: <input type="password" name="passwdUpdate" id="passwdUpdate"/></div>
-                                    <div>Nombre:<input type="text" name="nombreUpdate" id="nombreUpdate" placeholder="ej:David"/></div> 
-                                    <div>Apellidos: <input type="text" name="apellidosUpdate" id="apellidosUpdate" placeholder="ej:García Hernández"/></div>
-                                    <div>Fecha de nacimiento: <input type="text" name="fecnaUpdate" id="fecnaUpdate" placeholder="ej:23/05/1997"/></div>
-                                    <div>Teléfono: <input type="text" name="telefonoUpdate" id="telefonoUpdate" placeholder="678365229"/></div>
-                                    <div><input type="button" name="update" id="update" class="botonEspecial" value="Enviar"/></div></div>
-                            </fieldset>    
-                        </form>    
-                    </article>
-    </aside>
-    
-	  <section>
-                    
-                </section>
-            
-            <div id='reservas'>
-              </div> 
-            </div>
+						<fieldset>
+							<legend id="desplegableUpdate">Modificar datos de perfil:</legend>
+							<div id="divUpdate">
+								<div>Cambiar Contraseña: <input type="password" name="passwdUpdate" id="passwdUpdate"/></div>
+								<div>Nombre:<input type="text" name="nombreUpdate" id="nombreUpdate" placeholder="ej:David"/></div> 
+								<div>Apellidos: <input type="text" name="apellidosUpdate" id="apellidosUpdate" placeholder="ej:García Hernández"/></div>
+								<div>Fecha de nacimiento: <input type="text" name="fecnaUpdate" id="fecnaUpdate" placeholder="ej:23/05/1997"/></div>
+								<div>Teléfono: <input type="text" name="telefonoUpdate" id="telefonoUpdate" placeholder="678365229"/></div>
+								<div><span id="update" class="button reserva">Guardar</span></div></div>
+						</fieldset>    
+					</form>    
+				</article>
+		</aside>
+		
+		<section>
+		<div><h3>Tus Reservas</h3></div>
+			<div id='reservas'>
+			</div> 
+			   
+		</section>
+    </div>         
+           
      <footer>
     <p>RUTAS Ambroz S.A ©Copyright 2017 | Todos los derechos reservados.</p>
 	</footer>

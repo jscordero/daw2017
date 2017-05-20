@@ -27,7 +27,7 @@ $(document).ready(function(){
 	cargarRutas()
     mostrar()
 	$('#cerrar').click(ocultar)
-	
+	$('#nuevo').click(mostrar)
 	
 
     var fileExtension = "";
@@ -213,14 +213,12 @@ function mostrar(){
 	$('#actualizar').addClass('oculto')
 	$('#registrar').addClass('mostrar')
 	$('#nuevo').click(function(){
-			type = $(this).attr('data-type');	
-			
-				$('.overlay-container').fadeIn(function() {		
-					window.setTimeout(function(){
-						$('.window-container.zoomin').addClass('window-container-visible');
-					}, 100);
-					
-				});
+		type = $(this).attr('data-type');		
+		$('.overlay-container').fadeIn(function() {		
+			window.setTimeout(function(){
+				$('.window-container.zoomin').addClass('window-container-visible');
+			}, 100);			
+		});
 	})
 	limpiarImputs()
 } 
@@ -311,6 +309,7 @@ function modificar(){
 			$('#pdf').removeClass('oculto')		
 			$('#valora').removeClass('oculto')
 			$('#actualizar').removeClass('oculto')
+			$('#registrar').removeClass('mostrar')
 			$('#id').addClass('mostrar')		
 			$('#pdf').addClass('mostrar')		
 			$('#valora').addClass('mostrar')
@@ -450,6 +449,7 @@ function limpiarImputs(){
 
 function comprobarNulos(){
 	var completo=false
+	var mensaje=""
 	var datos=$("#nuevo_articulo input")	
 	var nombre, kilometros, minutos, localidad, consejos, dificultad, num_reservas, direc, mapa
 	if(nombre=datos[1].value){

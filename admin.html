@@ -21,8 +21,8 @@
 		<section id="nuevo_articulo">
 		
 			<label id="id">ID: <input type="text" name="id" readOnly="true"/></label>	<!-- Ocultar al añadir-->	
-			<label>Nombre: <input type="text" name="nombre" required/></label>
-			<label>Kilometros: <input type="text" name="kilometros"required/></label>
+			<label>Nombre: <input type="text" name="nombre"/></label>
+			<label>Kilometros: <input type="text" name="kilometros"/></label>
 			<label>Minutos: <input type="number" name="minutos"/></label>
 			<label>Localidad: <select name="localidad" id="localidad">
 				<option value="Abadía">Abadía</option>
@@ -43,12 +43,12 @@
 			<label>Numero de reservas : <input type="number" name="maximo"/></label>
 			<label>Mapa: <input type="text" name="mapa"/></label>
 			<label id="pdf">Dirección PDF: <input type="text" name="pdf"/></label><!-- Ocultar al añadir-->	
-			<label id="valora">Valoracion: <input type="text" name="valoracion"/></label><!-- Ocultar al añadir -->
+			<label id="valora">Valoracion: <input type="number" name="valoracion"></label><!-- Ocultar al añadir -->
 			<form enctype="multipart/form-data" class="formulario">
 			<label>Subir PDF</label>
-				<input name="archivo" type="file" id="imagen" required/>
-				<input type="button" value="Registrar" id="registrar"/>
-				<input type="button" value="Modificar" id="actualizar"/>
+			<input name="archivo" type="file" id="imagen"/>
+			<input type="button" value="Registrar" id="registrar"/>
+			<input type="button" value="Modificar" id="actualizar"/>
 			</form>			
 			<p id="mensaje"></p><br>
 			<button id="cerrar">Cerrar</button>

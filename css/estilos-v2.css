@@ -304,22 +304,20 @@ input{margin-left: 15px;}
     
 }
 
-#reservas {
-    float:right;
-    height:320px;
-    overflow-y: scroll;
-}
+
 
 footer {
     clear:both;
     margin-top:0px;
 }
 
-#update {
-    width:30%;
-    height:20px;
-    margin-top:20px;
-}
+
+.reserva{
+			border-radius: 20px; background-color: #f4511e; border: none; color: #FFFFFF; text-align: center; font-size: 18px; padding: 5px; width: 150px; transition: all 0.5s; cursor: pointer;margin: 5px;
+			
+		}		
+		
+		.reserva:hover{opacity: 1; right: 0; background-color:#74b138;}
 .overlay-container3 {
 		
 		display: none;
@@ -373,3 +371,43 @@ footer {
 		padding:2px;
 		margin-left:22%;
 	}
+.contenedor_reserva{
+	width:100%;
+	border:1px solid rgb(170, 170, 170);
+	border-radius:5px;
+	position:left;
+	left:0px;
+	margin:1%;
+	
+}
+
+#reservas{
+	width:40%;
+	text-align:center;
+}
+.ruta{
+	font-size:12px;
+	float:left;	
+	color: White;	
+}
+.fecha{
+	font-size:12px;
+		
+	color: White;	
+}
+
+#contenedor_reserva div{
+	clear:both;
+	
+}
+
+.titulo{
+	background-color:#74b138;
+	border-radius:3px;
+	padding:10px;
+	text-align:right;
+}
+
+.marco{
+	border:1px solid rgb(170, 170, 170);
+}
