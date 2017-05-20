@@ -34,7 +34,7 @@
 			}else{
 				$mensaje="No se ha podido modificar la ruta con id=".$id;
 			}
-			return $mensaje;
+			return $consulta;
 		}
 		//Para panel del Admin
 		function borrarRuta($id){
