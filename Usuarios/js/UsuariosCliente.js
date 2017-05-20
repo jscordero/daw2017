@@ -253,9 +253,8 @@ $(document).ready(function() {
 					console.log(validoFecha)
 					console.log(validoNombre)	
 					console.log(validoApellidos)
-					alerta(validoApellidos)
-					
-					/*$.ajax({
+					if ((validoMail + validoTelefono + validoDNI + validoFecha + validoNombre + validoApellidos) == 6){
+						$.ajax({
 						data:  enviarAjax,
 						url:   'Usuarios/php/insertarCliente.php',
 						type:  'post',
@@ -269,7 +268,24 @@ $(document).ready(function() {
 						}
 						
 						
-					});*/
+					});
+					}else{
+						if (validoMail == 0){
+							alerta("El Email no es correcto")
+						}else if(validoTelefono == 0){
+							alerta("El Número de teléfono no es correcto")
+						}else if(validoDNI == 0){
+							alerta("El DNI No es correcto")
+						}else if(validoFecha == 0){
+							alerta("La fecha de nacimiento no es correcta")
+						}else if(validoNombre == 0){
+							alerta("El nombre contiene un caracter no valido")
+						}else if(validoApellidos == 0){
+							alerta("El Apellido contiene un caracter no valido")
+						}
+					}
+					
+					
 				}else{
 					alerta('El Usuario ya Existe')
 				}
@@ -496,6 +512,6 @@ $('#alerta').html(mensaje)
 }
 
 function cerrarAlerta(){
-	//$('#alerta').val("")
+	$('#alerta').val("")
 	$('.overlay-container3').fadeOut().end().find('.window-container3').removeClass('window-container-visible3');
 }
