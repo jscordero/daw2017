@@ -472,11 +472,11 @@ function nif(dni) {
      numero = numero % 23;
      letra='TRWAGMYFPDXBNJZSQVHLCKET';
      letra=letra.substring(numero,numero+1);
-    if (letra!=letr.toUpperCase()) {
-       return 'Dni erroneo, la letra del NIF no se corresponde';
-     }else{
+    //if (letra!=letr.toUpperCase()) {
+       //return 0;
+     //}else{
        return 1
-     }
+    //}
   }else{
      return 0
    }
