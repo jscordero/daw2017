@@ -163,7 +163,7 @@ background: radial-gradient(center, ellipse cover,  rgba(127,127,127,0) 0%,rgba(
 	float:left;
 }
 
-.ruta2{font-size:12px; float:left; }
+.ruta2{font-size:12px; }
 .nota{font-size:12px; }
 .pares{background-color:#74b138; border-radius:3px; padding:10px; text-align:center;color:white; margin-top:1%; margin-left:5%;}
 .impares{background-color:White; border-radius:3px; padding:10px; text-align:center;color:#74b138; margin-top:1%; margin-left:5%; border:1px solid rgb(170, 170, 170);}

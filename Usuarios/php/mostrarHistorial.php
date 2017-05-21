@@ -23,8 +23,8 @@ $enlace = new Historial();
 $visualizar = $enlace->seleccionarUnHistorial($_SESSION['ID']);
 
 if(empty($visualizar)) {
-    $respuestaNegativa = ["No tiene reservas"];
-    echo(json_encode($respuestaNegativa));
+    $respuestaNegativa = 0;
+    echo $respuestaNegativa;
     
 }else {
     

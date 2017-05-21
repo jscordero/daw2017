@@ -128,7 +128,12 @@
 				return "sin resultados";
 			}
         }
-		
+		function nuevaValoracion($valor, $ruta){
+			$consulta="update rutas set VALORACION=".$valor." where id=".$ruta;
+			if($resultado=$this->conexion->query($consulta)){
+				return "ok";
+			}
+		}
 	}
 
 ?>

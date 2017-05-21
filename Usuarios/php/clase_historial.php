@@ -94,7 +94,33 @@ class Historial {
 			return 0;
 		}
 	}
+	
+	function guardarValoracion($id, $valor, $ruta){
+		
+		
+		$consulta ="update historial set valor_ruta=".$valor." where id=".$id;
+		if($respuesta = $this->conexion->query($consulta)) {
+			$consulta2= "select sum(valor_ruta)/count(id_ruta) as valor from historial join rutas on rutas.id = historial.id_ruta where rutas.nombre='".$ruta."'";
+			if($respuesta2 = $this->conexion->query($consulta2)){
+				
+				return $respuesta2;
+				//return "dentro";
+			}
+			return "guardado pero no actualizado";
+            
+        }else{
+			return "Fallo";
+		}
+	}
 
 }
+/*
+$enlace = new Historial();
+$ver = $enlace->guardarValoracion(1,5.5,'Camino de Arrieros');
+	while($fila = $ver->fetch_assoc()) {
+
+        $resultado = $fila['valor'];         
+    }
+	echo $resultado;*/
 
 ?>
