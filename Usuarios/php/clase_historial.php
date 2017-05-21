@@ -87,7 +87,7 @@ class Historial {
 	}
 	
 	function sumarKm($id){
-		$consulta = "select sum(KM_RECORRIDOS) AS TOTAL from historial where ID_USUARIO=".$id;
+		$consulta = "select convert(sum(KM_RECORRIDOS), DECIMAL(4,2)) AS TOTAL from historial where ID_USUARIO=".$id;
 		if($respuesta = $this->conexion->query($consulta)) {
             return $respuesta;
         }else{
@@ -100,7 +100,7 @@ class Historial {
 		
 		$consulta ="update historial set valor_ruta=".$valor." where id=".$id;
 		if($respuesta = $this->conexion->query($consulta)) {
-			$consulta2= "select sum(valor_ruta)/count(id_ruta) as valor from historial join rutas on rutas.id = historial.id_ruta where rutas.nombre='".$ruta."'";
+			$consulta2= "select convert(sum(valor_ruta)/count(id_ruta), DECIMAL(4,2)) as valor from historial join rutas on rutas.id = historial.id_ruta where rutas.nombre='".$ruta."'";
 			if($respuesta2 = $this->conexion->query($consulta2)){
 				
 				return $respuesta2;

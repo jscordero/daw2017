@@ -3,14 +3,12 @@
 session_start();
 include "clase_historial.php";
 include "../../rutas/php/clase_rutas.php";
-/*
+
 $valor=$_POST['valor'];
 $id=$_POST['id'];
-$ruta=$_POST['id_ruta'];*/
+$ruta=$_POST['id_ruta'];
 
-$valor=9;
-$id=1;
-$ruta='Camino de Arrieros';
+
 $enlace = new Historial(); 
 
 $ver = $enlace->guardarValoracion($id, $valor,$ruta);
