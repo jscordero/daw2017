@@ -11,7 +11,7 @@ function mostrarValoracion(){
 				for( var x=0;x<data.length;x++){
                    
 					
-					enlace+="<fieldset><h4><p><a href='rutas.html'>"+data[x].nombre+"</p><p>Valoración: "+data[x].valoracion+"</a></p></h4></fieldset>"
+					enlace+="<fieldset><h4><p><a href='rutas.html'>"+data[x].nombre+"</a></p><p>Valoración: "+data[x].valoracion+"</p></h4></fieldset>"
 				}
 				
 				$('#mas-valoradas').html(enlace)
