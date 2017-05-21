@@ -13,6 +13,15 @@ $fecna = $_REQUEST['fecna'];
 $telefono = $_REQUEST['telefono'];
 
 $enlace = new Usuarios(); 
+
+
+
+
+		$_SESSION['nombre']= $nombre;
+		$_SESSION['apellidos']= $apellidos;
+		$_SESSION['telefono']= $telefono;
+		$_SESSION['fecna']= $fecna;
+
 $visualizar = $enlace->modificarUsuario($_SESSION['ID'],$_SESSION['nick'],$_SESSION['Correo'],$_SESSION['dni'],$nombre,$apellidos,$fecna,$telefono,$password);
 
 

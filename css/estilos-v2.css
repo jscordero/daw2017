@@ -109,7 +109,7 @@ h4{text-align: center;}
 legend{text-align: center;}
 input{margin-left: 15px;}
 #cont-index p{padding: 20px;}
-#tus-reservas{ text-align: center; background-color: #1ba277; color: #FFFFFF; padding: 10px;}
+.tus-reservas{ text-align: center; background-color: #1ba277; color: #FFFFFF; padding: 10px;width:100%;}
 
 /* RUTAS */
 .botonEspecial{background-color:#f4511e; border-color:#f4511e; border-radius:10px;}
@@ -132,13 +132,12 @@ background: radial-gradient(center, ellipse cover,  rgba(127,127,127,0) 0%,rgba(
 -ms-transform:  scale(1); transform:  scale(1); opacity: 1;}
 .window-container3 p{text-align:center;}
 #close3{border-radius: 20px; background-color: #f4511e; border: none; color: #FFFFFF; text-align: center; font-size: 18px; padding: 5px; width: 150px; transition: all 0.5s; cursor: pointer;margin: 5px; text-align:center; padding:2px; margin-left:22%;}
-.contenedor_reserva{width:100%; border:1px solid rgb(170, 170, 170); border-radius:5px;
-position:left; left:0px; margin:1%;}
+.contenedor_reserva{width:100%; border:1px solid rgb(170, 170, 170); border-radius:5px; position:left; left:0px; margin-top:1%; margin-left:3%;}
 #reservas{width:98%; text-align:center;}
 .ruta{font-size:12px; float:left; color: White;}
 .fecha{font-size:12px; color: White;}
 #contenedor_reserva div{clear:both;}
-.titulo{background-color:#74b138; border-radius:3px; padding:10px; text-align:right;}
+.titulo{background-color:#74b138; border-radius:3px; padding:10px; text-align:right;color:white}
 .marco{border:1px solid rgb(170, 170, 170);}
 #editar_perfil{width: 32%; margin-left: 34%;}
 #editar_perfil:hover{background-color: #ff3c00;}
@@ -153,5 +152,21 @@ position:left; left:0px; margin:1%;}
 #tabla-hospe a {text-decoration: none; color: #000;}
 #tabla-hospe td{text-align: center;}
 
+.no_reservas{
+	text-align:center;
+}
 
+.colocacion{	
+	margin-left:2%;
+	margin-right:2%;
+	width:45%;
+	float:left;
+}
 
+.ruta2{font-size:12px; float:left; }
+.nota{font-size:12px; }
+.pares{background-color:#74b138; border-radius:3px; padding:10px; text-align:center;color:white; margin-top:1%; margin-left:5%;}
+.impares{background-color:White; border-radius:3px; padding:10px; text-align:center;color:#74b138; margin-top:1%; margin-left:5%; border:1px solid rgb(170, 170, 170);}
+#tamanioimput{
+	width:40px;
+}

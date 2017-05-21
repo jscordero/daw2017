@@ -1,5 +1,6 @@
 $(document).ready(function() {
-    
+	mostrarHistorial()
+    calcularKms()
     $("#cancelarReserva").on("click",function() {
         valor = $(this).value;
         console.log("Dentro de calcelacion con id: " + valor);
@@ -53,27 +54,18 @@ $(document).ready(function() {
                 $("#resultado").html("Procesando, espere por favor...");
             },
             success:  function (response) {				
-                 var reservas = $('#reservas');
-                
-                /*var tabla = "<table id='tablaReservas'><tr><th>Fecha</th><th>Ruta</th><th>Personas</th></tr>"
-                for(var i = 0; i < response.length; i++) {
-                    tabla += "<tr>";
-                    tabla += "<td style='width:150px;'>" + response[i].fecha; + "</td>";
-                    tabla += "<td>" + response[i].nombreRuta; + "</td>";
-                    tabla += "<td style='width:450px;'>" + response[i].personas; + "</td>";
-                    tabla += "<td><input type='button' id='cancelarReserva' name='cancelarReserva' value='" + response[i].idReservas + "'/></td>"
-                    tabla += "</tr>";
-                }
-                tabla += "</table>";
-                
-                tablaEstilos = $("#tablaReservas");
-                tablaEstilos.children.children.style = "border:2px solid red;";*/
+                var reservas = $('#reservas');  
 				var tabla=""
-				for(var i = 0; i < response.length; i++) {
-				//tabla+="<div><input type='button' id='cancelarReserva' class='ocultar2' readOnly='true'name='cancelarReserva' value='" + response[i].idReservas + "'/><div><p><input type='submit' value='X'/><p><span class='fecha'>"+response[i].fecha+"</span><span class='ruta'>"+response[i].nombreRuta+"</span></p></div></div>"+response[i].personas+"</div></div>"
-				tabla+="<div class='contenedor_reserva'><input type='button' id='cancelarReserva' class='ocultar2' readOnly='true'name='cancelarReserva' value='" + response[i].idReservas + "'/><div class='titulo'><p><span class='fecha'>"+response[i].fecha+"</span><span class='ruta'>"+response[i].nombreRuta+"</p></div>"
-				tabla+="<div><p class'persona'>"+response[i].personas+"</p></div></div>"				 
-				 }
+				if (response=="No tiene reservas"){
+					tabla+="<div class='contenedor_reserva'><div class='titulo'><p class='no_reservas'>No Tienes reservas</p></div>"
+					tabla+="<div><p class'persona'>Anímate a realizar una ruta con Nosotros</p></div></div>"
+				}else{
+					for(var i = 0; i < response.length; i++) {
+					tabla+="<div class='contenedor_reserva'><input type='button' id='cancelarReserva' class='ocultar2' readOnly='true'name='cancelarReserva' value='" + response[i].idReservas + "'/><div class='titulo'><p><span class='fecha'>"+response[i].fecha+"</span><span class='ruta'>"+response[i].nombreRuta+"</p></div>"
+					tabla+="<div><p class'persona'>"+response[i].personas+"</p></div></div>"				 
+				}
+				}
+				
 				 reservas.html(tabla);
 			}
 
@@ -118,4 +110,56 @@ function desplegar(){
             }
 
         });
+}
+
+function mostrarHistorial(){
+	$.ajax({            
+		url:   'Usuarios/php/mostrarHistorial.php',
+		type:  'post',
+		dataType: 'Json',            
+		success:  function (response) {				
+			var tabla=""
+			if (response=="No tiene reservas"){
+				tabla+="<div class='contenedor_reserva'><div class='titulo'><p class='no_reservas'>No has realizado ninguna Ruta</p></div>"
+				tabla+="<div><p class'persona'>Anímate a realizar una ruta con Nosotros</p></div></div>"
+			}else{
+				for(var i = 0; i < response.length; i++) {
+					if(i%2==0){
+						tabla+="<div class=''><input type='hidden' id='id_nota' value='"+response[i].idReservas+"'/><div class='pares'><p><span class='nota'>Tu Nota: </span><span class='nota'>"
+						if(response[i].valor == -1){
+							tabla +="<input type='number' min='0' max='10' id='tamanioimput' step='.1'/><input id='valorar' type='submit' value='+'/></span><span class='ruta2'>"+response[i].nombreRuta+"</p></div>"
+						}else{
+							tabla +=response[i].valor+"</span><span class='ruta2'>"+response[i].nombreRuta+"</p></div>"
+						}						
+					}else{
+						tabla+="<div class=''><input type='hidden' id='id_nota' value='"+response[i].idReservas+"'/><div class='impares'><p><span class='nota'>Tu Nota: </span><span class='nota'>"
+						if(response[i].valor == -1){
+							tabla +="<input type='number' min='0' max='10' id='tamanioimput' step='.1'/><input id='valorar' type='submit' value='+'/></span><span class='ruta2'>"+response[i].nombreRuta+"</p></div>"
+						}else{
+							tabla +=response[i].valor+"</span><span class='ruta2'>"+response[i].nombreRuta+"</p></div>"
+						}
+						
+						
+						
+						
+						//tabla+="<div class=''><input type='hidden' id='id_nota' value='"+response[i].idReservas+"'/><div class='impares'><p><span class='nota'>Tu Nota: </span><span class='nota'>"+response[i].valor+"</span><span class='ruta2'>"+response[i].nombreRuta+"</p></div>"
+				
+					}							 
+				}
+				$('#historial').html(tabla)
+			}
+		}
+	});
+}
+
+function calcularKms(){	
+	 $.ajax({            
+		url:   'Usuarios/php/calcularEstadisticas.php',
+		type:  'post',
+		dataType: 'Json',            
+		success:  function (response) {				
+			$('#numrutas').html(response.rutas)
+			$('#KMS').html(response.kms)
+		}
+	})
 }
