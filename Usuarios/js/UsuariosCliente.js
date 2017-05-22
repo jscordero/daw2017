@@ -203,6 +203,7 @@ $(document).ready(function() {
                     
                 desconectar.removeClass("ocultar");
                 desconectar.addClass("mostrar"); 
+				
                 
                 }
 				}
@@ -337,6 +338,7 @@ $(document).ready(function() {
                     
                 desconectar.removeClass("mostrar");
                 desconectar.addClass("ocultar"); 
+				redireccionar()
             }
             
             
@@ -514,4 +516,8 @@ $('#alerta').html(mensaje)
 function cerrarAlerta(){
 	$('#alerta').val("")
 	$('.overlay-container3').fadeOut().end().find('.window-container3').removeClass('window-container-visible3');
+}
+
+function redireccionar(){
+	window.location="index.html";
 }
