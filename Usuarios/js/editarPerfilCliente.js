@@ -54,7 +54,8 @@ $(document).ready(function() {
 		success:  function (response) {				
 			var reservas = $('#reservas');  
 			var tabla=""
-			if (response=="No tiene reservas"){
+			
+			if (response==""){
 				tabla+="<div class='contenedor_reserva'><div class='titulo'><p class='no_reservas'>No Tienes reservas</p></div>"
 				tabla+="<div><p class'persona'>Anímate a realizar una ruta con Nosotros</p></div></div>"
 			}else{
