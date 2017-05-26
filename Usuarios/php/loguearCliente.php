@@ -52,7 +52,7 @@ if($resultado == 0) {
 		$_SESSION['telefono']=$resultado[6];
 		$_SESSION['fecna']=$resultado[7];
         
-        $respuestaNegativa = new errores("Conectado");
+        $respuesta = new errores("Conectado");
         header('Content-type: application/json');
         echo(json_encode($respuesta));
         

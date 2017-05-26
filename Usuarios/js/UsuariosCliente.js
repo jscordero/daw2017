@@ -6,99 +6,92 @@ function comprobarSession(){
 		DataType:'Json',		
 		success: function(data){ 
 		
-		if(data.lenght>1){
-			
-			
+		var liLogueo = $("#liLogueo");
+                
+                var liRegistro = $("#liRegistro");
+		if (data.usuario==""){
+				liLogueo.removeClass("ocultar");
+                liLogueo.addClass("mostrar");
+				liRegistro.removeClass("ocultar");
+                liRegistro.addClass("mostrar");
+				$('#botonreserva').removeClass("mostrar")
+				$('#botonreserva').addClass("oculto")
+				$('#nuevocomentario').removeClass("mostrar")
+				$('#nuevocomentario').addClass("oculto")
+				$('#botonPerfil').removeClass("mostrar")
+				$('#botonPerfil').addClass("oculto")
+			console.log("no hay sesion")
 		}else{
+			console.log("Session: "+data.usuario)
 			
-		
-			var liLogueo = $("#liLogueo");
-					
-					var liRegistro = $("#liRegistro");
-			if (data.usuario==""){
-					liLogueo.removeClass("ocultar");
-					liLogueo.addClass("mostrar");
-					liRegistro.removeClass("ocultar");
-					liRegistro.addClass("mostrar");
-					$('#botonreserva').removeClass("mostrar")
-					$('#botonreserva').addClass("oculto")
-					$('#nuevocomentario').removeClass("mostrar")
-					$('#nuevocomentario').addClass("oculto")
-					$('#botonPerfil').removeClass("mostrar")
-					$('#botonPerfil').addClass("oculto")
-				console.log("no hay sesion")
-			}else{
-				console.log("Session: "+data.usuario)
-				
-					var botonAdmin = $("#botonAdmin");
-					var desconectar = $("#desc");
-					
-					var nickLogueado = $("#nickLogueado");
-					
-					var nickResultado = data.usuario;
-					var correoResultado = data.correo;
-					var perfilResultado = data.perfil;
-					
-					if(data.perfil == "administrador") {
-					nickLogueado.html(nickResultado);    
-						
-					botonAdmin.removeClass("ocultar");
-					botonAdmin.addClass("mostrar");
-						
-					liLogueo.removeClass("mostrar");
-					liLogueo.addClass("ocultar");
-						
-					
-					
-					liRegistro.removeClass("mostrar");
-					liRegistro.addClass("ocultar");
-					  $('#botonPerfil').removeClass("oculto")
-					$('#botonPerfil').addClass("mostrar")  
-				   
-						
-					desconectar.removeClass("ocultar");
-					desconectar.addClass("mostrar");    
-						
-					}else if(data.perfil == "guia" ) {
-					 nickLogueado.html(nickResultado); 
-					 botonAdmin.removeClass("mostrar");
-					botonAdmin.addClass("ocultar");  
-					   
-					liLogueo.removeClass("mostrar");
-					liLogueo.addClass("ocultar");
-						
-				   $('#botonPerfil').removeClass("oculto")
-					$('#botonPerfil').addClass("mostrar")  
-					
-					liRegistro.removeClass("mostrar");
-					liRegistro.addClass("ocultar");
-						
-				   
-					desconectar.removeClass("ocultar");
-					desconectar.addClass("mostrar"); 
-						
-					}else {
-					 nickLogueado.html(nickResultado); 
-					 botonAdmin.removeClass("mostrar");
-					botonAdmin.addClass("ocultar");
-						
-					liLogueo.removeClass("mostrar");
-					liLogueo.addClass("ocultar");
-					  $('#botonPerfil').removeClass("oculto")
-					$('#botonPerfil').addClass("mostrar")    
-					 
-					
-					liRegistro.removeClass("mostrar");
-					liRegistro.addClass("ocultar");
-						
-				   
-						
-					desconectar.removeClass("ocultar");
-					desconectar.addClass("mostrar"); 
-					
-					}
-				}
-			}
+                var botonAdmin = $("#botonAdmin");
+                var desconectar = $("#desc");
+                
+                var nickLogueado = $("#nickLogueado");
+                
+                var nickResultado = data.usuario;
+                var correoResultado = data.correo;
+                var perfilResultado = data.perfil;
+                
+                if(data.perfil == "administrador") {
+                nickLogueado.html(nickResultado);    
+                    
+                botonAdmin.removeClass("ocultar");
+                botonAdmin.addClass("mostrar");
+                    
+                liLogueo.removeClass("mostrar");
+                liLogueo.addClass("ocultar");
+                    
+                
+                
+                liRegistro.removeClass("mostrar");
+                liRegistro.addClass("ocultar");
+                  $('#botonPerfil').removeClass("oculto")
+				$('#botonPerfil').addClass("mostrar")  
+               
+                    
+                desconectar.removeClass("ocultar");
+                desconectar.addClass("mostrar");    
+                    
+                }else if(data.perfil == "guia" ) {
+                 nickLogueado.html(nickResultado); 
+                 botonAdmin.removeClass("mostrar");
+                botonAdmin.addClass("ocultar");  
+                   
+                liLogueo.removeClass("mostrar");
+                liLogueo.addClass("ocultar");
+                    
+               $('#botonPerfil').removeClass("oculto")
+				$('#botonPerfil').addClass("mostrar")  
+                
+                liRegistro.removeClass("mostrar");
+                liRegistro.addClass("ocultar");
+                    
+               
+                desconectar.removeClass("ocultar");
+                desconectar.addClass("mostrar"); 
+                    
+                }else {
+                 nickLogueado.html(nickResultado); 
+                 botonAdmin.removeClass("mostrar");
+                botonAdmin.addClass("ocultar");
+                    
+                liLogueo.removeClass("mostrar");
+                liLogueo.addClass("ocultar");
+                  $('#botonPerfil').removeClass("oculto")
+				$('#botonPerfil').addClass("mostrar")    
+                 
+                
+                liRegistro.removeClass("mostrar");
+                liRegistro.addClass("ocultar");
+                    
+               
+                    
+                desconectar.removeClass("ocultar");
+                desconectar.addClass("mostrar"); 
+                
+                }
+		}
 			
 		}
 	})
@@ -123,19 +116,17 @@ $(document).ready(function() {
                 $("#resultado").html("Procesando, espere por favor...");
             },
             success:  function (response) {
-				
-				
-				if(response.mensaje=="La password introducida no es correcta"){
-					console.log(response.mensaje)
+				console.log(response.mensaje)
+				if(response.mensaje=='La password introducida no es correcta'){
 					alerta("Contraseña incorrecta")
-				}else if(response.mensaje=="El nick no es correcto"){
-					console.log(response.mensaje)
+					console.log("Contraseña incorrecta")
+				}else if(response.mensaje=='El nick no es correcto'){
 					alerta("No existe Nick")
-				}
-				else{
-					console.log(response.mensaje)
+					console.log("No existe Nick")
+				}else{
+					console.log("logueado")
 					var liLogueo = $("#liLogueo");
-               
+				   
 					var liRegistro = $("#liRegistro");
 				   
 					var botonAdmin = $("#botonAdmin");
@@ -219,7 +210,6 @@ $(document).ready(function() {
 					
 					}
 				}
-				
                 comprobarSession()
             }
             
