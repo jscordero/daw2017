@@ -6,92 +6,99 @@ function comprobarSession(){
 		DataType:'Json',		
 		success: function(data){ 
 		
-		var liLogueo = $("#liLogueo");
-                
-                var liRegistro = $("#liRegistro");
-		if (data.usuario==""){
-				liLogueo.removeClass("ocultar");
-                liLogueo.addClass("mostrar");
-				liRegistro.removeClass("ocultar");
-                liRegistro.addClass("mostrar");
-				$('#botonreserva').removeClass("mostrar")
-				$('#botonreserva').addClass("oculto")
-				$('#nuevocomentario').removeClass("mostrar")
-				$('#nuevocomentario').addClass("oculto")
-				$('#botonPerfil').removeClass("mostrar")
-				$('#botonPerfil').addClass("oculto")
-			console.log("no hay sesion")
-		}else{
-			console.log("Session: "+data.usuario)
+		if(data.lenght>1){
 			
-                var botonAdmin = $("#botonAdmin");
-                var desconectar = $("#desc");
-                
-                var nickLogueado = $("#nickLogueado");
-                
-                var nickResultado = data.usuario;
-                var correoResultado = data.correo;
-                var perfilResultado = data.perfil;
-                
-                if(data.perfil == "administrador") {
-                nickLogueado.html(nickResultado);    
-                    
-                botonAdmin.removeClass("ocultar");
-                botonAdmin.addClass("mostrar");
-                    
-                liLogueo.removeClass("mostrar");
-                liLogueo.addClass("ocultar");
-                    
-                
-                
-                liRegistro.removeClass("mostrar");
-                liRegistro.addClass("ocultar");
-                  $('#botonPerfil').removeClass("oculto")
-				$('#botonPerfil').addClass("mostrar")  
-               
-                    
-                desconectar.removeClass("ocultar");
-                desconectar.addClass("mostrar");    
-                    
-                }else if(data.perfil == "guia" ) {
-                 nickLogueado.html(nickResultado); 
-                 botonAdmin.removeClass("mostrar");
-                botonAdmin.addClass("ocultar");  
-                   
-                liLogueo.removeClass("mostrar");
-                liLogueo.addClass("ocultar");
-                    
-               $('#botonPerfil').removeClass("oculto")
-				$('#botonPerfil').addClass("mostrar")  
-                
-                liRegistro.removeClass("mostrar");
-                liRegistro.addClass("ocultar");
-                    
-               
-                desconectar.removeClass("ocultar");
-                desconectar.addClass("mostrar"); 
-                    
-                }else {
-                 nickLogueado.html(nickResultado); 
-                 botonAdmin.removeClass("mostrar");
-                botonAdmin.addClass("ocultar");
-                    
-                liLogueo.removeClass("mostrar");
-                liLogueo.addClass("ocultar");
-                  $('#botonPerfil').removeClass("oculto")
-				$('#botonPerfil').addClass("mostrar")    
-                 
-                
-                liRegistro.removeClass("mostrar");
-                liRegistro.addClass("ocultar");
-                    
-               
-                    
-                desconectar.removeClass("ocultar");
-                desconectar.addClass("mostrar"); 
-                
-                }
-		}
+			
+		}else{
+			
+		
+			var liLogueo = $("#liLogueo");
+					
+					var liRegistro = $("#liRegistro");
+			if (data.usuario==""){
+					liLogueo.removeClass("ocultar");
+					liLogueo.addClass("mostrar");
+					liRegistro.removeClass("ocultar");
+					liRegistro.addClass("mostrar");
+					$('#botonreserva').removeClass("mostrar")
+					$('#botonreserva').addClass("oculto")
+					$('#nuevocomentario').removeClass("mostrar")
+					$('#nuevocomentario').addClass("oculto")
+					$('#botonPerfil').removeClass("mostrar")
+					$('#botonPerfil').addClass("oculto")
+				console.log("no hay sesion")
+			}else{
+				console.log("Session: "+data.usuario)
+				
+					var botonAdmin = $("#botonAdmin");
+					var desconectar = $("#desc");
+					
+					var nickLogueado = $("#nickLogueado");
+					
+					var nickResultado = data.usuario;
+					var correoResultado = data.correo;
+					var perfilResultado = data.perfil;
+					
+					if(data.perfil == "administrador") {
+					nickLogueado.html(nickResultado);    
+						
+					botonAdmin.removeClass("ocultar");
+					botonAdmin.addClass("mostrar");
+						
+					liLogueo.removeClass("mostrar");
+					liLogueo.addClass("ocultar");
+						
+					
+					
+					liRegistro.removeClass("mostrar");
+					liRegistro.addClass("ocultar");
+					  $('#botonPerfil').removeClass("oculto")
+					$('#botonPerfil').addClass("mostrar")  
+				   
+						
+					desconectar.removeClass("ocultar");
+					desconectar.addClass("mostrar");    
+						
+					}else if(data.perfil == "guia" ) {
+					 nickLogueado.html(nickResultado); 
+					 botonAdmin.removeClass("mostrar");
+					botonAdmin.addClass("ocultar");  
+					   
+					liLogueo.removeClass("mostrar");
+					liLogueo.addClass("ocultar");
+						
+				   $('#botonPerfil').removeClass("oculto")
+					$('#botonPerfil').addClass("mostrar")  
+					
+					liRegistro.removeClass("mostrar");
+					liRegistro.addClass("ocultar");
+						
+				   
+					desconectar.removeClass("ocultar");
+					desconectar.addClass("mostrar"); 
+						
+					}else {
+					 nickLogueado.html(nickResultado); 
+					 botonAdmin.removeClass("mostrar");
+					botonAdmin.addClass("ocultar");
+						
+					liLogueo.removeClass("mostrar");
+					liLogueo.addClass("ocultar");
+					  $('#botonPerfil').removeClass("oculto")
+					$('#botonPerfil').addClass("mostrar")    
+					 
+					
+					liRegistro.removeClass("mostrar");
+					liRegistro.addClass("ocultar");
+						
+				   
+						
+					desconectar.removeClass("ocultar");
+					desconectar.addClass("mostrar"); 
+					
+					}
+				}
+			}
 			
 		}
 	})
@@ -117,96 +124,102 @@ $(document).ready(function() {
             },
             success:  function (response) {
 				
-				if(response=='["La password introducida no es correcta"]'){
-					console.log("Contraseña incorrecta")
-				}else if(response=='["El nickname no existe"]'){
-					console.log("No existe Nick")
-				}else{
-                var liLogueo = $("#liLogueo");
-               
-                var liRegistro = $("#liRegistro");
-               
-                var botonAdmin = $("#botonAdmin");
-                var desconectar = $("#desc");
-				$('#botonreserva').removeClass("oculto")
-				$('#botonreserva').addClass("mostrar")
-                $('#nuevocomentario').removeClass("oculto")
-					$('#nuevocomentario').addClass("mostrar")
-					$('#botonPerfil').removeClass("oculto")
-				$('#botonPerfil').addClass("mostrar")  
-                var nickLogueado = $("#nickLogueado");
-                
-                var nickResultado = response.nick;
-                var correoResultado = response.correo;
-                var perfilResultado = response.perfil;
-                
-                if(perfilResultado == "administrador") {
-                nickLogueado.html(nickResultado);    
-                    
-                botonAdmin.removeClass("ocultar");
-                botonAdmin.addClass("mostrar");
-                    
-                liLogueo.removeClass("mostrar");
-                liLogueo.addClass("ocultar");
-				$('#botonreserva').removeClass("oculto")
-				$('#botonreserva').addClass("mostrar")
-                    $('#nuevocomentario').removeClass("oculto")
-					$('#nuevocomentario').addClass("mostrar")
-               
-                
-                liRegistro.removeClass("mostrar");
-                liRegistro.addClass("ocultar");
-                    
-               
-                    
-                desconectar.removeClass("ocultar");
-                desconectar.addClass("mostrar");    
-                    
-                }else if(perfilResultado == "guia") {
-                 nickLogueado.html(nickResultado); 
-                 botonAdmin.removeClass("mostrar");
-                botonAdmin.addClass("ocultar");  
-				$('#botonreserva').removeClass("oculto")
-				$('#botonreserva').addClass("mostrar")
-                   $('#nuevocomentario').removeClass("oculto")
-					$('#nuevocomentario').addClass("mostrar")
-                liLogueo.removeClass("mostrar");
-                liLogueo.addClass("ocultar");
-                    
-               
-                
-                liRegistro.removeClass("mostrar");
-                liRegistro.addClass("ocultar");
-                    
-              
-                    
-                desconectar.removeClass("ocultar");
-                desconectar.addClass("mostrar"); 
-                    
-                }else {
-                 nickLogueado.html(nickResultado); 
-                 botonAdmin.removeClass("mostrar");
-                botonAdmin.addClass("ocultar");
-                    
-                liLogueo.removeClass("mostrar");
-                liLogueo.addClass("ocultar");
-				$('#botonreserva').removeClass("mostrar")
-				$('#botonreserva').addClass("oculto")
-                    $('#nuevocomentario').removeClass("mostrar")
-					$('#nuevocomentario').addClass("oculto")
-                
-                
-                liRegistro.removeClass("mostrar");
-                liRegistro.addClass("ocultar");
-                    
-              
-                    
-                desconectar.removeClass("ocultar");
-                desconectar.addClass("mostrar"); 
 				
-                
-                }
+				if(response.mensaje=="La password introducida no es correcta"){
+					console.log(response.mensaje)
+					alerta("Contraseña incorrecta")
+				}else if(response.mensaje=="El nick no es correcto"){
+					console.log(response.mensaje)
+					alerta("No existe Nick")
 				}
+				else{
+					console.log(response.mensaje)
+					var liLogueo = $("#liLogueo");
+               
+					var liRegistro = $("#liRegistro");
+				   
+					var botonAdmin = $("#botonAdmin");
+					var desconectar = $("#desc");
+					$('#botonreserva').removeClass("oculto")
+					$('#botonreserva').addClass("mostrar")
+					$('#nuevocomentario').removeClass("oculto")
+						$('#nuevocomentario').addClass("mostrar")
+						$('#botonPerfil').removeClass("oculto")
+					$('#botonPerfil').addClass("mostrar")  
+					var nickLogueado = $("#nickLogueado");
+					
+					var nickResultado = response.nick;
+					var correoResultado = response.correo;
+					var perfilResultado = response.perfil;
+					
+					if(perfilResultado == "administrador") {
+					nickLogueado.html(nickResultado);    
+						
+					botonAdmin.removeClass("ocultar");
+					botonAdmin.addClass("mostrar");
+						
+					liLogueo.removeClass("mostrar");
+					liLogueo.addClass("ocultar");
+					$('#botonreserva').removeClass("oculto")
+					$('#botonreserva').addClass("mostrar")
+						$('#nuevocomentario').removeClass("oculto")
+						$('#nuevocomentario').addClass("mostrar")
+				   
+					
+					liRegistro.removeClass("mostrar");
+					liRegistro.addClass("ocultar");
+						
+				   
+						
+					desconectar.removeClass("ocultar");
+					desconectar.addClass("mostrar");    
+						
+					}else if(perfilResultado == "guia") {
+					 nickLogueado.html(nickResultado); 
+					 botonAdmin.removeClass("mostrar");
+					botonAdmin.addClass("ocultar");  
+					$('#botonreserva').removeClass("oculto")
+					$('#botonreserva').addClass("mostrar")
+					   $('#nuevocomentario').removeClass("oculto")
+						$('#nuevocomentario').addClass("mostrar")
+					liLogueo.removeClass("mostrar");
+					liLogueo.addClass("ocultar");
+						
+				   
+					
+					liRegistro.removeClass("mostrar");
+					liRegistro.addClass("ocultar");
+						
+				  
+						
+					desconectar.removeClass("ocultar");
+					desconectar.addClass("mostrar"); 
+						
+					}else {
+					 nickLogueado.html(nickResultado); 
+					 botonAdmin.removeClass("mostrar");
+					botonAdmin.addClass("ocultar");
+						
+					liLogueo.removeClass("mostrar");
+					liLogueo.addClass("ocultar");
+					$('#botonreserva').removeClass("mostrar")
+					$('#botonreserva').addClass("oculto")
+						$('#nuevocomentario').removeClass("mostrar")
+						$('#nuevocomentario').addClass("oculto")
+					
+					
+					liRegistro.removeClass("mostrar");
+					liRegistro.addClass("ocultar");
+						
+				  
+						
+					desconectar.removeClass("ocultar");
+					desconectar.addClass("mostrar"); 
+					
+					
+					}
+				}
+				
                 comprobarSession()
             }
             
