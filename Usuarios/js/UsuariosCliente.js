@@ -20,9 +20,9 @@ function comprobarSession(){
 				$('#nuevocomentario').addClass("oculto")
 				$('#botonPerfil').removeClass("mostrar")
 				$('#botonPerfil').addClass("oculto")
-			console.log("no hay sesion")
+			
 		}else{
-			console.log("Session: "+data.usuario)
+			
 			
                 var botonAdmin = $("#botonAdmin");
                 var desconectar = $("#desc");
@@ -116,15 +116,15 @@ $(document).ready(function() {
                 $("#resultado").html("Procesando, espere por favor...");
             },
             success:  function (response) {
-				console.log(response.mensaje)
+				
 				if(response.mensaje=='La password introducida no es correcta'){
 					alerta("Contraseña incorrecta")
-					console.log("Contraseña incorrecta")
+					
 				}else if(response.mensaje=='El nick no es correcto'){
 					alerta("No existe Nick")
-					console.log("No existe Nick")
+					
 				}else{
-					console.log("logueado")
+					
 					var liLogueo = $("#liLogueo");
 				   
 					var liRegistro = $("#liRegistro");
@@ -251,12 +251,7 @@ $(document).ready(function() {
 					var validoFecha = validarFormatoFecha(fecna)
 					var validoNombre= validarCadena(nombre)
 					var validoApellidos = validarCadena(apellidos)
-					console.log(validoMail)	
-					console.log(validoTelefono)	
-					console.log(validoDNI)	
-					console.log(validoFecha)
-					console.log(validoNombre)	
-					console.log(validoApellidos)
+					
 					if ((validoMail + validoTelefono + validoDNI + validoFecha + validoNombre + validoApellidos) == 6){
 						$.ajax({
 						data:  enviarAjax,
@@ -524,3 +519,4 @@ function cerrarAlerta(){
 function redireccionar(){
 	window.location="index.html";
 }
+

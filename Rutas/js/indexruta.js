@@ -126,7 +126,7 @@ function cargarRutasFecha(){
 			DataType:'Json',	
 			success: function(data){ 			
 				if(data[0].nombre=="vacio"){
-						alert("No Hay rutas para esa fecha")						
+						alerta("No Hay rutas para esa fecha")						
 				}else{		
 					$('#localidad_busqueda').val("Todas")
 					$('#lista').html("")
@@ -191,6 +191,7 @@ $(document).ready(function(){
 	$('#rutero').click(annadir)
 	$('#nuevocomentario').click(abrirComentario)
 	$('#localidad_busqueda').change(cargarRutasLocalidad)
+	$('#close6').click(cerrarAlerta);
 		var hoy= new Date()
 			$.datepicker.regional['es'] = {
 				closeText: 'Cerrar',
@@ -273,19 +274,19 @@ function guardarReserva(){
 		success: function(data){
 			console.log(data)
 			if (data==1){
-				alert('Ya tienes una reserva realizada')
+				alerta('Ya tienes una reserva realizada')
 			}else{
 				var id=$('#id_ruta').val()
 				var fecha=$('#listado_rutas').val()	
 				var fecha2=cambiarFecha(fecha)
 				var nombre=$('#nombrecompleto').html()
 				var dni=$('#DNIreserva').html()
-				var mensaje="<p>"+nombre+" <b>"+dni+"</b></p>"
+				var mensaje="<p>"+nombre+" </p>#<p>"+dni+"</p>@"
 				var contador=1;
 				var acompanantes=$('.compi')
 				var dniacompa=$('.dnicompi')		
 				for (var x=0;x<acompanantes.length;x++){
-					mensaje+="<p>"+acompanantes[x].innerHTML+" <b>"+dniacompa[x].innerHTML+"</b></p>"
+					mensaje+="<p>"+acompanantes[x].innerHTML+" <p>#</p>"+dniacompa[x].innerHTML+"</p>@"
 					contador++;
 				}					
 				datos={
@@ -326,14 +327,19 @@ function guardarReserva(){
 	
 
 function annadir(){
+	console.log("dentro añadir")
 	if($('#nombre_rutero').val()== "" || $('#dni_rutero').val()==""){
-		
+		alerta("Rellene todos los campos")
 	}else{		
+		console.log("dentro añadir 2")
 		$('#listado_ruteros').removeClass("ocultar")
-		$('#listado_ruteros').addClass("mostrar")		
+		$('#listado_ruteros').addClass("mostrar")
+		
 		var nombre=$('#nombre_rutero').val()
 		var dni=$('#dni_rutero').val()		
 		var mensaje=$('#listado_ruteros').html()
+		console.log(nombre)
+console.log(dni)
 		mensaje+="<p>Nombre: <span class='compi'>"+nombre+"</span></p><p>DNI: <span class='dnicompi'>"+dni+"</span></p><br><hr/>"
 		$('#listado_ruteros').html(mensaje)
 	}
@@ -465,7 +471,21 @@ function cuenta(){
    $('#contador').html(quedan)   
 } 
 
+function alerta(mensaje){
+$('#alerta').html(mensaje)	
+	type = $(this).attr('data-type');	
+	$('.overlay-container6').fadeIn(function() {		
+		window.setTimeout(function(){
+			$('.window-container6.zoomin').addClass('window-container-visible6');
+		}, 100);
+		
+	});
+}
 
+function cerrarAlerta(){
+	$('#alerta').val("")
+	$('.overlay-container6').fadeOut().end().find('.window-container6').removeClass('window-container-visible6');
+}
 
 function cambiarFecha(fecha){
 	var fecha=$('#listado_rutas').val()

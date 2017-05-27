@@ -1,31 +1,24 @@
 $(document).ready(function() {
-	
+	id=0
 	mostrarHistorial()
     calcularKms()
-    $("#cancelarReserva").on("click",function() {
-        valor = $(this).value;
-        console.log("Dentro de calcelacion con id: " + valor);
-    });
+    
 
     $("#editar_perfil").on('click',desplegar)
 
-    $('#update').on('click',function() {
-
-        console.log("Dentro de la función");
+    $('#update').on('click',function() {        
 
         var password = $(this).parent().parent().children().children("#passwdUpdate").val(); 
 
         var nombre = $(this).parent().parent().children().children("#nombreUpdate").val();
-        console.log("Este es el nombre: " + nombre);
+       
         var apellidos = $(this).parent().parent().children().children("#apellidosUpdate").val();
 
         var fecna = $(this).parent().parent().children().children("#fecnaUpdate").val();
 
         var telefono = $(this).parent().parent().children().children("#telefonoUpdate").val();
 
-        var enviarAjax = {"nombre":nombre,"apellidos":apellidos,"fecna":fecna,"telefono":telefono,"password":password};
-
-        console.log("Esto se va a enviar: " + enviarAjax);
+        var enviarAjax = {"nombre":nombre,"apellidos":apellidos,"fecna":fecna,"telefono":telefono,"password":password};       
 
         $.ajax({
             data:  enviarAjax,
@@ -42,8 +35,12 @@ $(document).ready(function() {
         });
     });
     
-   
-     $.ajax({
+   cargarReservas()
+    
+});
+
+function cargarReservas(){
+	 $.ajax({
             
 		url:   'Usuarios/php/mostrarReservas.php',
 		type:  'post',
@@ -55,19 +52,73 @@ $(document).ready(function() {
 			var reservas = $('#reservas');  
 			var tabla=""
 			
+			
+			
 			if (response==""){
 				tabla+="<div class='contenedor_reserva'><div class='titulo'><p class='no_reservas'>No Tienes reservas</p></div>"
 				tabla+="<div><p class'persona'>Anímate a realizar una ruta con Nosotros</p></div></div>"
-			}else{
+			}else{				
+				console.log(response)
+			
 				for(var i = 0; i < response.length; i++) {
-				tabla+="<div class='contenedor_reserva'><input type='button' id='cancelarReserva' class='ocultar2' readOnly='true'name='cancelarReserva' value='" + response[i].idReservas + "'/><div class='titulo'><p><span class='fecha'>"+response[i].fecha+"</span><span class='ruta'>"+response[i].nombreRuta+"</p></div>"
-				tabla+="<div><p class'persona'>"+response[i].personas+"</p></div></div>"				 
-			}
-			}			
+					tabla+="<div class='contenedor_reserva'><div><a class='cancelar' href='#' data-type='zoomin'>X</a><input type='button' id='cancelarReserva' class='ocultar2' readOnly='true' name='cancelarReserva' value='" + response[i].idReservas + "'/></div><div class='titulo'><p><span class='fecha'>"+response[i].fecha+"</span><span class='ruta'>"+response[i].nombreRuta+"</p></div>"
+						
+				var separarFilas=response[i].personas.split("@")
+					for (var x=0;x<separarFilas.length;x++){
+							tabla+="<div>"
+						var separarPersonas=separarFilas[x].split("#")						
+							if(x%2!=0){
+								console.log("par")
+								tabla+="<div class='personaRes filaPar'>"+separarPersonas[0]+"</div></div>"
+							}else{
+								tabla+="<div class='personaRes'>"+separarPersonas[0]+"</div></div>"
+							}
+							
+						}	
+				tabla+="</div>"						
+					}								 
+					
+				}
+						
 			 reservas.html(tabla);
+			$(".cancelar").on("click",function() {
+				type = $(this).attr('data-type');	
+				$('.overlay-container5').fadeIn(function() {		
+					window.setTimeout(function(){
+						$('.window-container5.zoomin').addClass('window-container-visible5');
+					}, 100);
+					
+				});
+				valor = $(this).parent();
+				var hijo =valor.children()
+				id =hijo[1].value
+				$('#alertaNo').click(cerrarAlerta2)
+				$('#alertaSi').click(CancelarReserva)
+				
+			});
 		}
 	});
-});
+}
+
+function CancelarReserva(){
+	console.log("Dentro de calcelacion con id: " + id);
+	var datos={
+		id:id
+	}
+	$.ajax({
+		url:   'Rutas/php/eliminarReserva.php',
+		data:datos,
+		type:  'post',				
+		success:  function (response) {
+			console.log("Eliminado")
+			cerrarAlerta2()
+			cargarReservas()
+		}
+	})
+}
+function cerrarAlerta2(){	
+	$('.overlay-container5').fadeOut().end().find('.window-container5').removeClass('window-container-visible5');
+}
 
 function desplegar(){
 	 if($('#updateUsuario').hasClass('ocultar2')) {
