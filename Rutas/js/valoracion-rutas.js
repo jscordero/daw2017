@@ -1,5 +1,10 @@
-$(document).ready(function(){
-mostrarValoracion()
+function guardarId(){
+	var id = $(this).find('input').val()
+	console.log("id:"+id)
+	sessionStorage.setItem('id', id)
+	
+}
+
 function mostrarValoracion(){
 	
 		 $.ajax({            
@@ -9,17 +14,18 @@ function mostrarValoracion(){
             success:function (data) {
                 var enlace=""				
 				for( var x=0;x<data.length;x++){
-                   
+                   console.log(data[x].nombre)
 					
-					enlace+="<fieldset><h4><p><a href='rutas.html'>"+data[x].nombre+"</a></p><p>Valoración: "+data[x].valoracion+"</p></h4></fieldset>"
+					enlace+="<fieldset class='perfil_ruta'><input type='hidden' value='"+data[x].nombre+"'/><h4><p><a href='rutas.html'>"+data[x].nombre+"</a></p><p>Valoración: "+data[x].valoracion+"</p></h4></fieldset>"
 				}
 				
 				$('#mas-valoradas').html(enlace)
+				$('.perfil_ruta').click(guardarId)
 				
             }            
         })		
 }
-
-
-
+$(document).ready(function(){
+mostrarValoracion()
 });
+

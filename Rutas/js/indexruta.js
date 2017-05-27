@@ -42,10 +42,21 @@ function cargarRutas(){
 }
 
 // funcion para mostrar los datos de la ruta seleccionada
-function CargarRutaInicio(ruta){	
-	dato={
-		ruta:ruta
+function CargarRutaInicio(ruta){
+	
+	var session=sessionStorage.getItem("id")
+	if (session!=0){
+		dato={
+			ruta:session			
+		}
+		$('#listado').val(session)
+		sessionStorage.setItem('id', 0)
+	}else{
+		dato={
+			ruta:ruta
+		}
 	}
+	
 	$.ajax({
 		data:dato,
 		url: 'rutas/php/cargar_ruta_valor.php',  
