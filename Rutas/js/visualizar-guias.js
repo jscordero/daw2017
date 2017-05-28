@@ -12,7 +12,7 @@ function mostrarValoracion(){
 				for( var x=0;x<data.length;x++){
                    
                     enlace+="<tr>"					
-					enlace+="<td>"+data[x].imagen_guia+"</td><td>"+data[x].nombre_guia+"</td><td>"+data[x].experiencia+"</td>"
+					enlace+="<td><img src='"+data[x].imagen_guia+"'/></td><td>"+data[x].nombre_guia+"</td><td>"+data[x].experiencia+"</td>"
                     enlace+="</tr>"
 				}
 				enlace+="</table>"
