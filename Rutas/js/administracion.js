@@ -260,17 +260,17 @@ function cargarRutas(){
 		DataType:'Json',		
 		success: function(data){  	
 			$('#mensaje2').html("")
-			var enlace="<table>"
-			
+			var enlace="<table id='tabla-hospe'>"
 			for(var x=0;x<data.length;x++){
 				
+			enlace+="<tr><th>GESTIÓN</th><th>ID</th><th>NOMBRE</th><th>KM</th><th>MINUTOS</th><th>LOCALIDAD</th><th>DIFICULTAD</th><th>VALORACIÓN</th><th>PDF</th></tr>"
 				enlace+="<tr>"
-				enlace += "<td><button class='borrar' id='"+data[x].id+"'>Borrar</button><button class='modificar' id='"+data[x].id+"'>Modificar</button></td><td id='ocultar'>"+data[x].id+"</td>"+"<td>"+data[x].nombre+"</td>"+"<td>"+data[x].km+"</td>"+"<td>"+data[x].minutos+"</td>"+"<td>"+data[x].localidad+"</td>"+"<td>"+data[x].consejos+"</td>"+"<td>"+data[x].dificultad+"</td>"+"<td>"+data[x].valoracion+"</td>"+"<td>"+data[x].pdf+"</td>"+"<td>"+data[x].max_res+"</td>"+"</tr><tr >"+"<td colspan=8>"+data[x].mapa+"</td>"
+				enlace += "<td><button class='borrar reserva' id='"+data[x].id+"'>Borrar</button><button class='modificar reserva' id='"+data[x].id+"'>Modificar</button></td><td id='ocultar'>"+data[x].id+"</td>"+"<td>"+data[x].nombre+"</td>"+"<td>"+data[x].km+"</td>"+"<td>"+data[x].minutos+"</td>"+"<td>"+data[x].localidad+"</td>"+"<td>"+data[x].dificultad+"</td>"+"<td>"+data[x].valoracion+"</td>"+"<td>"+data[x].pdf+"</td>"+"</tr><tr>"+"<td colspan=10>"+data[x].mapa+"</td>"
 				enlace+="</tr>"
 			}
 			enlace+="</table>"
             
-        $('#mensaje2').html(enlace)
+        $('#mostrar').html(enlace)
 		$('.modificar').click(modificar)
 		$('.borrar').click(borrar)
 		 var fileExtension = "";
