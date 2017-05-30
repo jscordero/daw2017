@@ -21,7 +21,7 @@
 
 if($resultado=$enlace->seleccionarTodosGuias()){
 			while($fila=$resultado->fetch_assoc()){	
-				$media=new envio($fila['ID'],$fila['NOMBRE_GUIA'],$fila['EXPERIENCIA'],$fila['IMAGEN_GUIA']);
+				$media=new envio($fila['ID'],$fila['NOMBRE'],$fila['EXPERIENCIA'],$fila['IMAGEN_GUIA']);
 				array_push($datos, $media);
 			}
 		}

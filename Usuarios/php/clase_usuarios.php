@@ -120,6 +120,7 @@ class Usuarios{
 				}
 		}
 	}
+
 	
 	function cambiarPerfil($id, $perfil){
 		$consulta="update usuarios set perfil=".$perfil." where id=".$id;
@@ -129,6 +130,16 @@ class Usuarios{
 			return "No Cambiado";
 		}
 	}
+
+    
+    function masValorados(){
+        
+        $consulta="select usuario, convert(sum(historial.KM_RECORRIDOS), decimal(10,2))as km from usuarios join historial on historial.ID_USUARIO = usuarios.id group by usuario order by km desc";
+        if($resultado = $this->conexion->query($consulta)) {
+			return $resultado;
+		}
+    }
+
 }
 
 ?>
