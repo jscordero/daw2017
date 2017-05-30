@@ -95,10 +95,11 @@ class Usuarios{
 	}
 	
 	function seleccionarTodosLosUsuarios() {
-		$consulta = "select * from usuarios";
+		$consulta = "select ID, USUARIO, perfilusuario.perfil as PERFIL, CORREO, DNI, NOMBRE, APELLIDOS, FECNA, TELEFONO from usuarios join perfilusuario on perfilusuario.idperfil = usuarios.perfil";
 		if($resultado = $this->conexion->query($consulta)) {
 			return $resultado;
 		}
+		
 	}
 	
 	function seleccionarUnUsuario($id) {
@@ -117,6 +118,15 @@ class Usuarios{
 				}else{
 					return 0;
 				}
+		}
+	}
+	
+	function cambiarPerfil($id, $perfil){
+		$consulta="update usuarios set perfil=".$perfil." where id=".$id;
+		if($resultado=$this->conexion->query($consulta)) {
+			return "Cambiado";
+		}else{
+			return "No Cambiado";
 		}
 	}
 }

@@ -34,8 +34,8 @@ function cargarRutas(){
 			var ruta=$('#listado').val()				
 			CargarRutaInicio(ruta)
 			$('#lista').change(function(){	
-			var ruta=$('#listado').val()				
-			CargarRutaInicio(ruta)								
+				var ruta=$('#listado').val()				
+				CargarRutaInicio(ruta)								
 			})			
 		}		
 	})
@@ -45,7 +45,8 @@ function cargarRutas(){
 function CargarRutaInicio(ruta){
 	
 	var session=sessionStorage.getItem("id")
-	if (session!=0){
+	console.log("session valor"+session)
+	if (session!=0 || session != null){
 		dato={
 			ruta:session			
 		}
@@ -56,7 +57,9 @@ function CargarRutaInicio(ruta){
 			ruta:ruta
 		}
 	}
-	
+	dato={
+			ruta:ruta
+		}
 	$.ajax({
 		data:dato,
 		url: 'rutas/php/cargar_ruta_valor.php',  
@@ -203,24 +206,24 @@ $(document).ready(function(){
 	$('#nuevocomentario').click(abrirComentario)
 	$('#localidad_busqueda').change(cargarRutasLocalidad)
 	$('#close6').click(cerrarAlerta);
-		var hoy= new Date()
-			$.datepicker.regional['es'] = {
-				closeText: 'Cerrar',
-				prevText: '< Ant',
-				nextText: 'Sig >',
-				currentText: 'Hoy',
-				monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
-				monthNamesShort: ['Ene','Feb','Mar','Abr', 'May','Jun','Jul','Ago','Sep', 'Oct','Nov','Dic'],
-				dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
-				dayNamesShort: ['Dom','Lun','Mar','Mié','Juv','Vie','Sáb'],
-				dayNamesMin: ['Do','Lu','Ma','Mi','Ju','Vi','Sá'],
-				weekHeader: 'Sm',
-				dateFormat: 'dd/mm/yy',
-				firstDay: 1,
-				isRTL: false,
-				showMonthAfterYear: false,
-				yearSuffix: ''
-			 }
+	var hoy= new Date()
+	$.datepicker.regional['es'] = {
+		closeText: 'Cerrar',
+		prevText: '< Ant',
+		nextText: 'Sig >',
+		currentText: 'Hoy',
+		monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+		monthNamesShort: ['Ene','Feb','Mar','Abr', 'May','Jun','Jul','Ago','Sep', 'Oct','Nov','Dic'],
+		dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+		dayNamesShort: ['Dom','Lun','Mar','Mié','Juv','Vie','Sáb'],
+		dayNamesMin: ['Do','Lu','Ma','Mi','Ju','Vi','Sá'],
+		weekHeader: 'Sm',
+		dateFormat: 'dd/mm/yy',
+		firstDay: 1,
+		isRTL: false,
+		showMonthAfterYear: false,
+		yearSuffix: ''
+	 }
 			$.datepicker.setDefaults($.datepicker.regional['es'])
 			$("#datepicker").datepicker({
 				minDate: hoy,
