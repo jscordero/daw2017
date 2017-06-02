@@ -73,7 +73,7 @@ $(document).ready(function(){
 				var datos=$("#nuevo_articulo input")	
 				var nombre, kilometros, minutos, localidad, consejos, dificultad, num_reservas, direc, mapa
 				nombre=datos[1].value
-				archivo=data				
+				archivo="rutas/pdf/"+data				
 				kilometros=datos[2].value
 				minutos=parseInt(datos[3].value)					
 				num_reservas=parseInt(datos[4].value)
@@ -101,7 +101,7 @@ $(document).ready(function(){
 					type: 'POST',					
 					data: ruta,		
 					success: function(data){                
-					   $('#mensaje').html(data)
+					   
 					   cargarRutas()
 					  ocultar()
 					   $("#nuevo_articulo input:text").each(function(){
@@ -128,7 +128,7 @@ $(document).ready(function(){
 			var formData = new FormData($(".formulario")[0])       
 			//hacemos la petición ajax  
 			$.ajax({
-				url: 'rutas/php/direccion_imagen.php',  
+				url: 'rutas/php/direccion_pdf.php',  
 				type: 'POST',
 				// Form data
 				//datos del formulario
@@ -157,7 +157,7 @@ $(document).ready(function(){
 					if(data=="Sin Fichero"){
 						dir_pdf=datos[6].value
 					}else{
-						dir_pdf=data
+						dir_pdf="rutas/pdf/"+data
 					}			
 					valoracion=datos[7].value
 						
@@ -182,7 +182,7 @@ $(document).ready(function(){
 						type: 'POST',					
 						data: ruta,		
 						success: function(data){                
-						   $('#mensaje').html(data)
+						   
 						   cargarRutas()
 						   ocultar()
 						   limpiarImputs()
@@ -265,14 +265,15 @@ function cargarRutas(){
 				
 			enlace+="<tr><th>GESTIÓN</th><th>ID</th><th>NOMBRE</th><th>KM</th><th>MINUTOS</th><th>LOCALIDAD</th><th>DIFICULTAD</th><th>VALORACIÓN</th><th>PDF</th></tr>"
 				enlace+="<tr>"
-				enlace += "<td><button class='borrar reserva' id='"+data[x].id+"'>Borrar</button><button class='modificar reserva' id='"+data[x].id+"'>Modificar</button></td><td id='ocultar'>"+data[x].id+"</td>"+"<td>"+data[x].nombre+"</td>"+"<td>"+data[x].km+"</td>"+"<td>"+data[x].minutos+"</td>"+"<td>"+data[x].localidad+"</td>"+"<td>"+data[x].dificultad+"</td>"+"<td>"+data[x].valoracion+"</td>"+"<td>"+data[x].pdf+"</td>"+"</tr><tr>"+"<td colspan=10>"+data[x].mapa+"</td>"
+				enlace += "<td><button class='borrar reserva' id='"+data[x].id+"'>Borrar</button><button class='modificar reserva' id='"+data[x].id+"'>Modificar</button></td><td id='ocultar'>"+data[x].id+"</td>"+"<td>"+data[x].nombre+"</td>"+"<td>"+data[x].km+"</td>"+"<td>"+data[x].minutos+"</td>"+"<td>"+data[x].localidad+"</td>"+"<td>"+data[x].dificultad+"</td>"+"<td>"+data[x].valoracion+"</td>"+"<td>"+data[x].pdf+"</td>"+"</tr><tr>"+"<td colspan=10>"/*data[x].mapa*/+"</td>"
 				enlace+="</tr>"
 			}
 			enlace+="</table>"
             
-        $('#mostrar').html(enlace)
+       $('#mensaje2').html(enlace)
 		$('.modificar').click(modificar)
 		$('.borrar').click(borrar)
+		
 		 var fileExtension = "";
 		
 		}
@@ -280,6 +281,7 @@ function cargarRutas(){
 }
 
 function modificar(){
+	console.log("modificar")
 	$('#edit').click(envioModificar)
 	var id=$(this).attr('id')
 	var parametro={
@@ -332,7 +334,7 @@ function modificar(){
 
 
 function borrar(){
-	
+	console.log("BORRAR")
 	var id=$(this).attr('id')
 	var parametro={
 		'id':id
@@ -343,7 +345,7 @@ function borrar(){
 		data:parametro,
 		DataType:'Json',		
 		success: function(data){  	
-			$('#mensaje').html(data)
+			
 			cargarRutas()
 		}
 	})

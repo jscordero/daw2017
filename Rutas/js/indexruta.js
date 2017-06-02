@@ -440,7 +440,7 @@ function actualizarComentarios(){
 			var enlace=""
 			for(var x=0;x<imprimir;x++){
 				enlace+="<section class='foros'>"					
-				enlace+="<artiche class='foros1'><span class='nick'>By "+data[x].nick+"</span><span class='fecha_foro'>"+data[x].fecha+"</span></article>"
+				enlace+="<article class='foros1'><span class='nick'>By "+data[x].nick+"</span><span class='fecha_foro'>"+data[x].fecha+"</span></article>"
 				enlace+="<article class='container'><p class='foros2'>"+data[x].mensaje+"</p></article>"				
 				enlace+="</section>"
 			}

@@ -12,10 +12,10 @@ if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQU
 	{
         mkdir("../pdf/");
 	}
-	$directorio="../pdf/".$file;
+	$directorio=$file;
         
     //comprobamos si el archivo ha subido
-    if ($file && move_uploaded_file($_FILES['archivo']['tmp_name'],$directorio))
+    if ($file && move_uploaded_file($_FILES['archivo']['tmp_name'],"../pdf/".$directorio))
     {
       if(!empty($directorio)){
 			 echo $directorio;//devolvemos el nombre del archivo para pintar la imagen
