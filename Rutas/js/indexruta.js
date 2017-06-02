@@ -1,4 +1,4 @@
-var session = false
+
 function noExcursion(date){
 var day = date.getDay();
 // aqui indicamos el numero correspondiente a los dias que ha de bloquearse (el 0 es Domingo, 1 Lunes, etc...)
@@ -43,23 +43,22 @@ function cargarRutas(){
 
 // funcion para mostrar los datos de la ruta seleccionada
 function CargarRutaInicio(ruta){
+	console.log("ruta"+ruta)
+	var session=localStorage.getItem("id")
 	
-	var session=sessionStorage.getItem("id")
-	console.log("session valor"+session)
-	if (session!=0 || session != null){
+	if (session!=0){
+		$('#listado').val(session)
 		dato={
 			ruta:session			
 		}
-		$('#listado').val(session)
-		sessionStorage.setItem('id', 0)
+		console.log("session valor"+session)
+		localStorage.setItem('id', 0)
 	}else{
 		dato={
 			ruta:ruta
 		}
 	}
-	dato={
-			ruta:ruta
-		}
+	
 	$.ajax({
 		data:dato,
 		url: 'rutas/php/cargar_ruta_valor.php',  
@@ -447,7 +446,7 @@ function actualizarComentarios(){
 			}
 			if(imprimir==0){
 				enlace+="<section class='foros'>"					
-				enlace+="<artiche class='foros1'><span class='nick'></span><span class='fecha_foro'></span></article>"
+				enlace+="<article class='foros1'><span class='nick'></span><span class='fecha_foro'></span></article>"
 				enlace+="<article class='container'><p class='foros2'>Sé el primero en hacer un comentario</p></article>"				
 				enlace+="</section>"
 			}			

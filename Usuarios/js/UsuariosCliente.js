@@ -233,7 +233,9 @@ $(document).ready(function() {
 		var dni = $(this).parent().parent().children().children("#dni").val();
 		var password = $(this).parent().parent().children().children("#passwd").val();
 		var datos={
-			usuario:nick
+			usuario:nick,
+			correo:correo,
+			dni:dni
 		}
 		$.ajax({
 			data:  datos,
@@ -241,7 +243,7 @@ $(document).ready(function() {
             type:  'post',
             dataType: 'Json',            
             success:  function (response) {				
-				console.log("nick"+response)
+				
 				if(response== 0){			
 
 					var enviarAjax = {"nick":nick,"correo":correo,"dni":dni,"nombre":nombre,"apellidos":apellidos,"fecna":fecna,"telefono":telefono,"perfil":perfil,"password":password};
@@ -286,7 +288,14 @@ $(document).ready(function() {
 					
 					
 				}else{
-					alerta('El Usuario ya Existe')
+					if(response==1){
+						alerta('El Usuario ya Existe')
+					}else if(response==2){
+						alerta('El Correo ya Existe')
+					}else{
+						alerta('El DNI ya Existe')
+					}
+					
 				}
             }
 		})

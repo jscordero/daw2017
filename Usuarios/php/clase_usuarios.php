@@ -110,15 +110,27 @@ class Usuarios{
 
 	}
 	
-	function comprobarNick($nick){
+	function comprobarNick($nick, $correo, $dni){
+		$comprobacion = 0;
 		$consulta="select USUARIO from usuarios where USUARIO ='".$nick."'";
 		if($resultado=$this->conexion->query($consulta)) {
 			if($resultado->num_rows>0){
-					return 1;
-				}else{
-					return 0;
+					$comprobacion = 1;
 				}
 		}
+		$consulta="select USUARIO from usuarios where CORREO ='".$correo."'";
+		if($resultado=$this->conexion->query($consulta)) {
+			if($resultado->num_rows>0){
+					$comprobacion = 2;
+				}
+		}
+		$consulta="select USUARIO from usuarios where DNI ='".$dni."'";
+		if($resultado=$this->conexion->query($consulta)) {
+			if($resultado->num_rows>0){
+					$comprobacion = 3;
+				}
+		}
+		return $comprobacion;
 	}
 
 	
