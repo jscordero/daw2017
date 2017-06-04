@@ -299,7 +299,7 @@ function guardarReserva(){
 				var acompanantes=$('.compi')
 				var dniacompa=$('.dnicompi')		
 				for (var x=0;x<acompanantes.length;x++){
-					mensaje+="<p>"+acompanantes[x].innerHTML+" <p>#</p>"+dniacompa[x].innerHTML+"</p>@"
+					mensaje+="<p>"+acompanantes[x].innerHTML+" </p>#<p>"+dniacompa[x].innerHTML+"</p>@"
 					contador++;
 				}					
 				datos={

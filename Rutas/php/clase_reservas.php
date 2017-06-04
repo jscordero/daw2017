@@ -74,6 +74,24 @@
 				
 			}
 		}
+		
+		function todasReservas(){
+			
+			$consulta="select reservas.ID AS ID,rutas.NOMBRE AS RUTAS,FECHA,PERSONAS from reservas join rutas ON rutas.ID = RESERVAS.ID_RUTA  order by RESERVAS.fecha asc";
+			if($resultado=$this->conexion->query($consulta)){
+				return $resultado;
+			}
+		
+		}
+		
+		function TodasReservasImprimir($ruta, $fecha){
+			
+			$consulta="select reservas.ID AS ID,rutas.NOMBRE AS RUTAS,FECHA,PERSONAS from reservas join rutas ON rutas.ID = RESERVAS.ID_RUTA where Rutas.nombre='$ruta' and fecha='$fecha' order by RESERVAS.fecha asc";
+			if($resultado=$this->conexion->query($consulta)){
+				return $resultado;
+			}
+		
+		}
 	}
 	
 ?>

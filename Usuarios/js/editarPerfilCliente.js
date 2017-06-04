@@ -68,7 +68,7 @@ function cargarReservas(){
 							tabla+="<div>"
 						var separarPersonas=separarFilas[x].split("#")						
 							if(x%2!=0){
-								console.log("par")
+								
 								tabla+="<div class='personaRes filaPar'>"+separarPersonas[0]+"</div></div>"
 							}else{
 								tabla+="<div class='personaRes'>"+separarPersonas[0]+"</div></div>"
