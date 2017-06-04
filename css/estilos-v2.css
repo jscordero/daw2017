@@ -148,6 +148,9 @@ background: radial-gradient(center, ellipse cover,  rgba(127,127,127,0) 0%,rgba(
 .marco{border:1px solid rgb(170, 170, 170);}
 #editar_perfil{width: 32%; margin-left: 34%;}
 #editar_perfil:hover{background-color: #ff3c00;}
+.no-margen #listado{margin-left: 0 !important;}
+#ui-datepicker-div{background-color: grey;}
+#ui-datepicker-div .ui-datepicker-header span{color: #fff;}
 
 
 /* HOSPEDAJE */

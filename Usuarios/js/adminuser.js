@@ -60,7 +60,7 @@ function cargarUser(){
 				}else{
 					enlace+="<option >Cliente</option>"
 				}
-				enlace+="</td><td><input id='"+data[x].id+"' type='submit' name='edit' value='Editar'/></td></tr>"
+				enlace+="</td><td><input id='"+data[x].id+"' type='submit' name='edit' value='Editar' class='reserva'/></td></tr>"
 			}
 			
 			$('#lista').html(enlace)
