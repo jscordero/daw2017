@@ -18,9 +18,22 @@
             <script  src="rutas/js/administracion.js"></script>
             <title>RUTAS</title>
 </head>
-        
+        <script>
+			$.ajax({				
+					url: 'usuarios/php/clase_sessiones.php',
+					type: 'POST',
+					DataType:'Json',		
+					success: function(data){
+					console.log(data.perfil)
+						if(data.perfil!="administrador"){
+							window.location="index.html";
+						}
+					}
+			})
+		</script>
 
         <body>
+		
            <nav id="menu-top">
                  <div id="desc" class="ocultar" style='width:300px;float:right;color:white;'><form><p>Conectado como <a href='perfilUsuario.html' id='nickLogueado'></a> <input type='button' name='desconectar' id='desconectar' class='botonEspecial' value='Desconectar'/></p></form>
                 </div>
@@ -123,7 +136,7 @@
 				<option value="Gargantilla">Gargantilla</option>
 				<option value="La Garganta">La Garganta</option>
 			</select></label>
-			<label>Consejos: <textarea name="consejos" cols=50 rows=10></textarea></label>
+			<label>Consejos: <textarea name="consejos" cols=40 rows=10></textarea></label>
 			<label>Dificultad: <select name="dificultad" id="dificultad">
 				<option value="Baja">Baja</option>
 				<option value="Media">Media</option>

@@ -1,3 +1,5 @@
+var historial_user=[]
+
 $(document).ready(function(){
 	mostrarValoracion()
 	function mostrarValoracion(){
@@ -22,9 +24,29 @@ $(document).ready(function(){
         })		
 }
 	cargarReservas()
+	cargarHistorial()
 });
 
-
+function cargarHistorial(){
+	 $.ajax({            
+            url:'Rutas/php/mostrar_historial_guias.php',
+			type:'post',
+			DataType:'Json',                      
+            success:function (response) {
+             var tabla=""
+			   
+			   tabla+="<select id='historial'><option></option>"
+			   for(var i = 0; i < response.length; i++) {
+					tabla+="<option>"+response[i].id+"/"+response[i].nombre+"</option>"
+					
+									
+				}
+				tabla+="</select><span class='boton reserva' id='historial_boton'>Historial</span></div><div id='registro'></div>"	
+					$('#historial_guias').html(tabla)					
+					$('#historial_boton').click(annadirHistorial)					
+            }            
+        })
+}
 
 
 function cargarReservas(){
@@ -44,13 +66,14 @@ function cargarReservas(){
 				tabla+="</select><span class='boton reserva' id='descargar_reserva'>Ver Inscritos</span></div><div id='inscritos'></div>"	
 					$('#reserva_guias').html(tabla)
 					$('#descargar_reserva').click(pdf)
-				
+									
             }            
         })
 }
 
 function pdf(){
 	reserva=$('#reser').val();
+	console.log(reserva)
 	datos={
 				datos:reserva
 			}
@@ -61,7 +84,8 @@ function pdf(){
 			type:'post',
 			DataType:'Json',                      
             success:function (response) {
-				var tabla="<div id='centrar_guia'><a id='PDF'  href='' download=''><img id='icon' src='img/pdf.png'></img></a>"
+				console.log(response)
+				var tabla="<div id='centrar_historial'>"
 				for(var i = 0; i < response.length; i++) {
 						
 				var separarFilas=response[i].personas.split("@")
@@ -85,36 +109,77 @@ function pdf(){
 }
 
 
+
 function annadirHistorial(){
-	
+	console.log("dentro")
+	var ruta =$('#historial').val()
+	console.log(ruta)
+	var datos={
+		datos:ruta
+	}
 	 $.ajax({ 
-			
-            url:'Rutas/php/mostrar_reservas_guias.php',
+			data:datos,
+            url:'Rutas/php/guardar_historial.php',
 			type:'post',	
-DataType:'Json', 			
+			DataType:'Json', 			
             success:function (response) {
              var tabla=""
-			   
-			   
-			   for(var i = 0; i < response.length; i++) {
-					tabla+="<div class='contenedor_reserva'><div><a class='cancelar' href='#' data-type='zoomin'>X</a><input type='button' id='cancelarReserva' class='ocultar2' readOnly='true' name='cancelarReserva' value='" + response[i].idReservas + "'/></div><div class='titulo'><p><span class='fecha'>"+response[i].fecha+"</span><span class='ruta'>"+response[i].nombreRuta+"</p></div>"
-						
+			
+			   $('#km').val(response[0].km)
+			   $('#fecha').val(response[0].fecha)
+			  
+			   $('#NomRuta').val(response[0].id)
+			   console.log(response[0].nombreRuta)
+			   for(var i = 0; i < response.length; i++) {						
 				var separarFilas=response[i].personas.split("@")
 					for (var x=0;x<separarFilas.length;x++){
-							tabla+="<div>"
+						historial_user.push(response[i].id)
+							tabla+="<div id='recorrer'>"
 						var separarPersonas=separarFilas[x].split("#")						
-							if(x%2!=0){
-								console.log("par")
-								tabla+="<div class='personaRes filaPar'>"+separarPersonas[0]+"</div></div>"
-							}else{
-								tabla+="<div class='personaRes'>"+separarPersonas[0]+"</div></div>"
+							if(x==0){
+								console.log("fasdf"+response[x].nick)
+								tabla+="<p><input type='checkbox' checked id='"+response[x].nick+"' />"+separarPersonas[0]+"</p>"
 							}
 							
 						}	
-				tabla+="</div>"						
+									
 					}
-					$('#reserva_guias').html(tabla)
-				
+					tabla+="<span class='button reserva' id='guardar_histo'>Guardar</span>"
+					$('#registro').html(tabla)
+					$('#guardar_histo').click(guardarFinal)
+            }            
+        })
+}
+
+function guardarFinal(){
+	var nick=""
+	var km =$('#km').val()
+	var ruta =$('#NomRuta').val()
+	var fecha = $('#fecha').val()
+	var total = $('#recorrer input[type="checkbox"]:checked')
+	console.log("asdfasdf"+total.length)
+	for (var x=0; x<total.length;x++){
+		
+		nick+=total[x].id+"#"
+		
+		
+		
+		console.log(nick)
+	}
+	var datos={
+		usuarios:nick,
+		km:km,
+		ruta:ruta,
+		fecha:fecha
+	}
+	console.log(datos)
+	$.ajax({ 
+			data:datos,
+            url:'Usuarios/php/annadir_historial.php',
+			type:'post',	
+			DataType:'Json', 			
+            success:function (response) {
+				console.log(response)
             }            
         })
 }
