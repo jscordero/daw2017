@@ -236,3 +236,12 @@ background: radial-gradient(center, ellipse cover,  rgba(127,127,127,0) 0%,rgba(
 	height:300px;
 	overflow-y:scroll;
 }
+
+#historial{
+	height:500px;
+	overflow-y:scroll;
+}
+#tus-reservas{
+	height:500px;
+	overflow-y:scroll;
+}
