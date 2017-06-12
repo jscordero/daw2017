@@ -12,9 +12,7 @@
             <script  src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
             <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
             <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-            <script  src="Usuarios/js/mostrar_hospedaje_localidad.js"></script>
-            <script  src="Usuarios/js/usuariosCliente.js"></script>
-            <script  src="Rutas/js/valoracion-rutas.js"></script>
+			<script  src="usuarios/js/adminhospedaje.js"></script>
             
             
             
@@ -94,7 +92,18 @@
     <aside>
     <form> 
         <h3>Localidad</h3>
-      <select id="listado_pueblos">
+		<select id="hospedaje">
+			<option selected>Todos</option>
+			<option>Abadía</option>
+			<option>Aldeanueva del Camino</option>
+			<option>Baños de Montemayor</option>
+			<option>Casas del monte</option>
+			<option>Gargantilla</option>
+			<option>Hervás</option>
+			<option>La Garganta</option>
+			<option>Segura del Toro</option>
+		</select>
+     <!--  <select id="listado_pueblos">
     <option value="Todos">Todos</option>
     <option value="Abadía">Abadía</option> 
     <option value="Aldeanueva del Camino">Aldeanueva del Camino</option> 
@@ -104,7 +113,7 @@
     <option value="Segura del Toro">Segura del Toro</option>
     <option value="La Garganta">La Garganta</option> 
     <option value="Hervás">Hervás</option>
-</select>
+</select>-->
         </form>
         <h3>Rutas más valoradas</h3>
         <div id="mas-valoradas"></div>
@@ -113,8 +122,8 @@
         
     </aside>
     
-	<section>
-    <article>
+	<section id='ajuste'>
+	 <article>
   <div id="annadir">
 		<label>ID: </label><br><input type="text" name="id"></input><br>
 		<label>Nombre: </label><br><input type="text" name="nombre"></input><br>
@@ -137,9 +146,28 @@
 		<button id="actualizar" class="reserva">Editar</button><br>
 	</div>
             
-		<div id="mostrar"></div>
-
+	
     </article>
+	</section>
+	<!-- fin del popup -->
+	<div id="mensaje"></div>
+	<section>
+		<select id="hospedaje">
+			<option selected>Todos</option>
+			<option>Abadía</option>
+			<option>Aldeanueva del Camino</option>
+			<option>Baños de Montemayor</option>
+			<option>Casas del monte</option>
+			<option>Gargantilla</option>
+			<option>Hervás</option>
+			<option>La Garganta</option>
+			<option>Segura del Toro</option>
+		</select>
+		<div><p>Listado de hospedajes</p></div>
+		<div id="mostrar"></div>
+	</section>
+	
+   
 	</section>
        
     </div>

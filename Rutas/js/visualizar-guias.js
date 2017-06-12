@@ -111,9 +111,9 @@ function pdf(){
 
 
 function annadirHistorial(){
-	console.log("dentro")
+	
 	var ruta =$('#historial').val()
-	console.log(ruta)
+	
 	var datos={
 		datos:ruta
 	}
@@ -129,7 +129,7 @@ function annadirHistorial(){
 			   $('#fecha').val(response[0].fecha)
 			  
 			   $('#NomRuta').val(response[0].id)
-			   console.log(response[0].nombreRuta)
+			  
 			   for(var i = 0; i < response.length; i++) {						
 				var separarFilas=response[i].personas.split("@")
 					for (var x=0;x<separarFilas.length;x++){
@@ -164,7 +164,7 @@ function guardarFinal(){
 		
 		
 		
-		console.log(nick)
+		
 	}
 	var datos={
 		usuarios:nick,
@@ -172,14 +172,14 @@ function guardarFinal(){
 		ruta:ruta,
 		fecha:fecha
 	}
-	console.log(datos)
+	
 	$.ajax({ 
 			data:datos,
             url:'Usuarios/php/annadir_historial.php',
 			type:'post',	
 			DataType:'Json', 			
             success:function (response) {
-				console.log(response)
+				
             }            
         })
 }
