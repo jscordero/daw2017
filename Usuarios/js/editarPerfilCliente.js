@@ -163,7 +163,7 @@ function mostrarHistorial(){
 		type:  'post',
 		dataType: 'Json',            
 		success:  function (response) {	
-			$('#historial').html("")		
+			$('#historial2').html("")		
 			var tabla=""
 			if (response==0){
 				tabla+="<div class='contenedor_reserva'><div class='titulo'><p class='no_reservas'>No has realizado ninguna Ruta</p></div>"
@@ -189,7 +189,7 @@ function mostrarHistorial(){
 				
 				
 			}
-			$('#historial').html(tabla)
+			$('#historial2').html(tabla)
 			$('input.userValor').click(guardarValoracion)
 		}
 	});
