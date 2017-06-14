@@ -43,7 +43,7 @@ function cargarRutas(){
 
 // funcion para mostrar los datos de la ruta seleccionada
 function CargarRutaInicio(ruta){
-	)
+	
 	var session=localStorage.getItem("id")
 	
 	if (session!=0){
