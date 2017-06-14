@@ -145,7 +145,7 @@
 			<label>Numero de reservas : <input type="number" name="maximo"/></label>
 			<label>Mapa: <input type="text" name="mapa"/></label>
 			<label id="pdf">Dirección PDF: <input type="text" name="pdf"/></label><!-- Ocultar al añadir-->	
-			<label id="valora">Valoracion: <input type="number" name="valoracion"></label><!-- Ocultar al añadir -->
+			<label id="valora">Valoracion: <input type="number" name="valoracion" min='0' max='10' step='0.1'></label><!-- Ocultar al añadir -->
 			<form enctype="multipart/form-data" class="formulario">
 			<label>Subir PDF</label>
 			<input name="archivo" type="file" id="imagen"/>
