@@ -308,7 +308,7 @@ $(document).ready(function() {
     $('#desconectar').on('click',function() {
        
         
-        console.log("desconectar");
+      
         
         $.ajax({
            
@@ -359,7 +359,7 @@ $(document).ready(function() {
 });
 
 function ocultarTrasLogueo(nickResultado,correoResultado,perfilResultado){
-	console.log("su puta madre")
+	
 	var liLogueo = $("#liLogueo");
 	
 	var liRegistro = $("#liRegistro");
@@ -452,15 +452,15 @@ function validarTelefono(telefono){
 	  var expresionRegular2=/\s/;//<--- con esto vamos a validar que no tenga espacios en blanco
 	 
 	  if(telefono==''){
-		  console.log("dentro vacio")
+		  
 			resultado = 0
 		}
 	  else if(expresionRegular2.test(telefono)){	
-console.log("dentro espacion")		  
+	  
 			resultado = 0
 		}
 	  else if(expresionRegular1.test(telefono)){
-		  console.log("dentro numero")
+		  
 		  if(telefono.length== 9){
 			  resultado = 1
 		  }else{

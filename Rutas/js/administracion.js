@@ -95,7 +95,7 @@ $(document).ready(function(){
 					archivo:archivo,
 					consejos:consejos
 				}
-				console.log(ruta)
+				
 				$.ajax({
 					url: 'rutas/php/panel_admin_registro.php',  
 					type: 'POST',					
@@ -123,7 +123,7 @@ $(document).ready(function(){
 	$('#actualizar').click(function(){
 		
 		if(comprobarNulos()){
-			console.log("actualizar")
+		
 			//información del formulario
 			var formData = new FormData($(".formulario")[0])       
 			//hacemos la petición ajax  
@@ -176,7 +176,7 @@ $(document).ready(function(){
 						dir_pdf:dir_pdf,
 						valoracion:valoracion
 					}
-					console.log(ruta)
+					
 					$.ajax({
 						url: 'rutas/php/panel_admin_modificar.php',  
 						type: 'POST',					
@@ -281,7 +281,7 @@ function cargarRutas(){
 }
 
 function modificar(){
-	console.log("modificar")
+	
 	$('#edit').click(envioModificar)
 	var id=$(this).attr('id')
 	var parametro={
@@ -294,7 +294,7 @@ function modificar(){
 		data:parametro,
 		DataType:'Json',		
 		success: function(data){  	
-		console.log("dentro")
+		
 			var enlace=$('#nuevo_articulo input')	
 			$('#nuevo_articulo textarea').val(data.consejos)	
 			$('#nuevo_articulo select').val(data.dificultad)			
@@ -334,7 +334,7 @@ function modificar(){
 
 
 function borrar(){
-	console.log("BORRAR")
+	
 	var id=$(this).attr('id')
 	var parametro={
 		'id':id
@@ -413,7 +413,7 @@ function envioModificar(){
 				archivo:archivo,
 				consejos:consejos
 			}
-			console.log(ruta)
+			
 			$.ajax({
 				url: 'rutas/php/panel_admin_modificar.php',  
 				type: 'POST',					

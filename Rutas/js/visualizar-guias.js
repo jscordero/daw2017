@@ -73,7 +73,7 @@ function cargarReservas(){
 
 function pdf(){
 	reserva=$('#reser').val();
-	console.log(reserva)
+	
 	datos={
 				datos:reserva
 			}
@@ -84,7 +84,7 @@ function pdf(){
 			type:'post',
 			DataType:'Json',                      
             success:function (response) {
-				console.log(response)
+				
 				var tabla="<div id='centrar_historial'>"
 				for(var i = 0; i < response.length; i++) {
 						
@@ -93,7 +93,7 @@ function pdf(){
 							tabla+="<div>"
 						var separarPersonas=separarFilas[x].split("#")						
 							if(x%2!=0){
-								console.log("par")
+								
 								tabla+="<div>"+separarPersonas[0]+"</div>"
 							}else{
 								tabla+="<div>"+separarPersonas[0]+"</div>"
@@ -137,7 +137,7 @@ function annadirHistorial(){
 							tabla+="<div id='recorrer'>"
 						var separarPersonas=separarFilas[x].split("#")						
 							if(x==0){
-								console.log("fasdf"+response[x].nick)
+								
 								tabla+="<p><input type='checkbox' checked id='"+response[x].nick+"' />"+separarPersonas[0]+"</p>"
 							}
 							
@@ -157,7 +157,7 @@ function guardarFinal(){
 	var ruta =$('#NomRuta').val()
 	var fecha = $('#fecha').val()
 	var total = $('#recorrer input[type="checkbox"]:checked')
-	console.log("asdfasdf"+total.length)
+	
 	for (var x=0; x<total.length;x++){
 		
 		nick+=total[x].id+"#"

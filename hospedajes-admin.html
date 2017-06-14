@@ -13,7 +13,7 @@
             <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
             <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 			<script  src="usuarios/js/adminhospedaje.js"></script>
-            
+            <script  src="Rutas/js/valoracion-rutas.js"></script>
             
             
         
@@ -125,6 +125,8 @@
 	<section id='ajuste'>
 	 <article>
   <div id="annadir">
+  <div class="overlay-container">
+		<div class="window-container zoomin">
 		<label>ID: </label><br><input type="text" name="id"></input><br>
 		<label>Nombre: </label><br><input type="text" name="nombre"></input><br>
         <label>Localidad:</label><br>
@@ -144,6 +146,7 @@
 		<label>URL: </label><br><input type="text" name="web"></input><br>
 		<button id="guardar" class="reserva">Guardar</button>
 		<button id="actualizar" class="reserva">Editar</button><br>
+		</div></div>
 	</div>
             
 	
@@ -152,17 +155,7 @@
 	<!-- fin del popup -->
 	<div id="mensaje"></div>
 	<section>
-		<select id="hospedaje">
-			<option selected>Todos</option>
-			<option>Abadía</option>
-			<option>Aldeanueva del Camino</option>
-			<option>Baños de Montemayor</option>
-			<option>Casas del monte</option>
-			<option>Gargantilla</option>
-			<option>Hervás</option>
-			<option>La Garganta</option>
-			<option>Segura del Toro</option>
-		</select>
+		
 		<div><p>Listado de hospedajes</p></div>
 		<div id="mostrar"></div>
 	</section>
