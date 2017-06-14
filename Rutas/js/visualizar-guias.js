@@ -85,7 +85,7 @@ function pdf(){
 			DataType:'Json',                      
             success:function (response) {
 				
-				var tabla="<div id='centrar_historial'>"
+				var tabla="<div id='centrar_historial'><a id='PDF'  href='' download=''><img id='icon' src='img/pdf.png'></img></a>"
 				for(var i = 0; i < response.length; i++) {
 						
 				var separarFilas=response[i].personas.split("@")
